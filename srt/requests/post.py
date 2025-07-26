@@ -1,0 +1,282 @@
+import json
+import os
+import pypdfium2
+import subprocess
+
+from docx import Document
+from io import BytesIO
+from pathlib import Path
+from dotenv import load_dotenv
+from datetime import datetime, timezone
+
+from fastapi.security import OAuth2PasswordBearer
+from redis import Redis
+from sqlalchemy import select, func, cast, Boolean, delete
+from sqlalchemy.ext.asyncio import AsyncSession
+from fastapi import APIRouter, Depends, status, Request, Form
+from fastapi import UploadFile, File
+from fastapi.responses import JSONResponse
+from datetime import timedelta
+
+from sqlalchemy.util import counter
+
+from srt.access import get_current_user
+from srt.dependencies import producer, get_redis
+from srt.schemas.request import RequirementsRequest, ResumeRequest, StartProcessingRequest
+from srt.schemas.response import UserOut, RequirementsOut, ResumeOut, StartProcessingOut
+from srt.data_base.models import User, Requirements, Resume
+from srt.data_base.data_base import get_db
+from srt.config import LOGIN_BLOCK_TIME, STORAGE_TIME_REQUIREMENTS, STORAGE_TIME_RESUME, ALLOWED_EXTENSIONS, \
+    MAX_CHAR_RESUME, MAX_CHAR_REQUIREMENTS
+from srt.config import logger
+from srt.exception import (NotFoundData, InvalidCredentialsException, InvalidTokenException, NoRights,
+                           ToManyAttemptsEnter, InvalidFileFormat, CorruptedFile, TooManyCharacters)
+
+
+load_dotenv()
+KAFKA_TOPIC_NAME = os.getenv('KAFKA_TOPIC_NAME')
+KAFKA_TOPIC_PRODUCER_FOR_UPLOADING_DATA = os.getenv('KAFKA_TOPIC_PRODUCER_FOR_UPLOADING_DATA')
+KAFKA_TOPIC_PRODUCER_FOR_AI_HANDLER = os.getenv('KAFKA_TOPIC_PRODUCER_FOR_AI_HANDLER')
+
+router = APIRouter()
+
+async def extract_text_from_file(file: UploadFile, extensions: str, user_id: int) -> str:
+    if extensions == '.pdf':
+        pdf = pypdfium2.PdfDocument(await file.read())
+        text = ""
+        for page in pdf:
+            text += page.get_textpage().get_text_range()
+        await file.seek(0)  # Важно: перемотка файла для возможного повторного чтения
+        return text
+    elif extensions == '.docx':
+        try:
+            content = await file.read()
+            doc = Document(BytesIO(content))  # Используем BytesIO как файлоподобный объект
+            await file.seek(0)
+            text = "\n".join([paragraph.text for paragraph in doc.paragraphs])
+            return text
+        except Exception:
+            raise CorruptedFile(file.filename)
+    else:
+        return (await file.read()).decode('utf-8')
+
+async def add_requirements(
+    user_id: int,
+    requirements: str,
+    redis_client: Redis,
+    db: AsyncSession
+)-> RequirementsOut:
+    new_requirements = Requirements(
+        user_id=user_id,
+        requirements=requirements
+    )
+    db.add(new_requirements)
+    await db.commit()
+    await db.refresh(new_requirements)
+
+    # сохраняем в redis
+    await redis_client.setex(f"requirements:{new_requirements.requirements_id}", STORAGE_TIME_REQUIREMENTS, requirements)
+
+    producer.sent_message(
+        topic=KAFKA_TOPIC_PRODUCER_FOR_UPLOADING_DATA,
+        key=f'requirements',
+        value={
+            'requirements_id': new_requirements.requirements_id,
+            'user_id': user_id,
+            'requirements': requirements
+        }
+    )
+    return RequirementsOut(requirements_id=new_requirements.requirements_id)
+
+async def add_resume(
+    user_id: int,
+    resume: str,
+    redis_client: Redis,
+    db: AsyncSession
+)->ResumeOut:
+    new_resume = Resume(
+        user_id=user_id,
+        resume=resume
+    )
+    db.add(new_resume)
+    await db.commit()
+    await db.refresh(new_resume)
+
+    # сохраняем в redis
+    await redis_client.setex(f"resume:{new_resume.resume_id}", STORAGE_TIME_RESUME, resume)
+
+    producer.sent_message(
+        topic=KAFKA_TOPIC_PRODUCER_FOR_UPLOADING_DATA,
+        key=f'resume',
+        value={
+            'resume_id': new_resume.resume_id,
+            'user_id': user_id,
+            'resume': new_resume.resume
+        }
+    )
+
+    return ResumeOut(resume_id=new_resume.resume_id)
+
+@router.post('/create_requirements/text', response_model=RequirementsOut)
+async def create_requirements_text(
+        data: RequirementsRequest,
+        current_user: User = Depends(get_current_user),
+        redis_client: Redis = Depends(get_redis),
+        db: AsyncSession = Depends(get_db)
+):
+    # Создаем запись с требованиями
+    if len(data.requirements) > MAX_CHAR_REQUIREMENTS:
+        raise TooManyCharacters(MAX_CHAR_REQUIREMENTS)
+
+    return await add_requirements(current_user.user_id, data.requirements, redis_client, db)
+
+
+
+@router.post('/create_requirements/file', response_model=RequirementsOut)
+async def create_requirements_doc(
+    file: UploadFile = File(..., max_size=10_000_000),  # 10MB лимит
+    current_user: User = Depends(get_current_user),
+    redis_client: Redis = Depends(get_redis),
+    db: AsyncSession = Depends(get_db)
+):
+    file_ext = Path(file.filename).suffix.lower()
+
+    if file_ext not in ALLOWED_EXTENSIONS:
+        raise InvalidFileFormat(ALLOWED_EXTENSIONS)
+
+    requirements = await extract_text_from_file(file, file_ext, current_user.user_id)
+    if len(requirements) > MAX_CHAR_REQUIREMENTS:
+        raise TooManyCharacters(MAX_CHAR_REQUIREMENTS)
+
+    return await add_requirements(current_user.user_id, requirements, redis_client, db)
+
+
+@router.post('/create_resume/text', response_model=ResumeOut)
+async def create_resume_text(
+        data: ResumeRequest,
+        current_user: User = Depends(get_current_user),
+        redis_client: Redis = Depends(get_redis),
+        db: AsyncSession = Depends(get_db)
+):
+    # Создаем запись с требованиями
+    if len(data.resume) > MAX_CHAR_RESUME:
+        raise TooManyCharacters(MAX_CHAR_RESUME)
+    return await add_resume(current_user.user_id, data.resume, redis_client, db)
+
+
+
+@router.post('/create_resume/file', response_model=ResumeOut)
+async def create_resume_file(
+    file: UploadFile = File(..., max_size=10_000_000),  # 10MB лимит
+    current_user: User = Depends(get_current_user),
+    redis_client: Redis = Depends(get_redis),
+    db: AsyncSession = Depends(get_db)
+):
+    file_ext = Path(file.filename).suffix.lower()
+
+    if file_ext not in ALLOWED_EXTENSIONS:
+        raise InvalidFileFormat
+
+    resume = await extract_text_from_file(file, file_ext, current_user.user_id)
+    if len(resume) > MAX_CHAR_RESUME:
+        raise TooManyCharacters(MAX_CHAR_RESUME)
+
+    return await add_resume(current_user.user_id, resume, redis_client, db)
+
+
+@router.post('/start_processing', response_model=StartProcessingOut)
+async def start_processing(
+    data: StartProcessingRequest,
+    current_user: User = Depends(get_current_user),
+    redis_client: Redis = Depends(get_redis),
+    db: AsyncSession = Depends(get_db)
+):
+    requirements = await redis_client.get(f'requirements:{data.requirements_id}')
+    if not requirements:
+        requirements_from_db = await db.execute(select(Requirements).where(Requirements.requirements_id == data.requirements_id))
+        requirements = requirements_from_db.scalar_one_or_none()
+        if not requirements:
+            raise NotFoundData()
+        if requirements.user_id != current_user.user_id:
+            raise NoRights()
+        requirements = requirements.requirements # получаем требования к резюме
+
+    resume = await redis_client.get(f'resume:{data.resume_id}')
+    if not resume:
+        resume_from_db = await db.execute(select(Resume).where(Resume.resume_id == data.resume_id))
+        resume = resume_from_db.scalar_one_or_none()
+        if not resume:
+            raise NotFoundData()
+        if resume.user_id != current_user.user_id:
+            raise NoRights()
+        resume = resume.resume # получаем требования к резюме
+
+    producer.sent_message(
+        topic=KAFKA_TOPIC_PRODUCER_FOR_AI_HANDLER,
+        key='new_request',
+        value={
+            'user_id': current_user.user_id,
+            'requirements': requirements,
+            'resume': resume
+        }
+    )
+
+    return StartProcessingOut(status='Processing started')
+
+
+
+
+
+
+
+
+
+
+
+# ЭТО ТОЛЬКО ДЛЯ ОТЛАДКИ
+# ЭТО ТОЛЬКО ДЛЯ ОТЛАДКИ
+# ЭТО ТОЛЬКО ДЛЯ ОТЛАДКИ
+
+from datetime import datetime, timedelta, UTC
+from jose import JWTError, jwt
+@router.post('/auth/login', tags=["Authentication"],)
+async def login(
+        request: Request,
+        username: str = Form(...),  # Для совместимости со Swagger UI
+        password: str = Form(...),  # Для совместимости со Swagger UI
+        db: AsyncSession = Depends(get_db)
+):
+    SECRET_KEY = os.getenv('SECRET_KEY')
+    ACCESS_TOKEN_EXPIRE_MINUTES = float(os.getenv('ACCESS_TOKEN_EXPIRE_MINUTES'))
+    ALGORITHM = os.getenv('ALGORITHM')
+
+    user_db = await db.execute(select(User).where(User.user_id == int(username)))
+    user = user_db.scalar()
+
+    # если нет такого пользователя или пароль не совпадает
+    if not user:
+        raise InvalidCredentialsException()
+
+    to_encode = {"sub": str(user.user_id)}.copy()
+
+    # Установка времени истечения токена
+
+    expire = datetime.now(UTC) + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+
+    # Добавляем поле с временем истечения
+    to_encode.update({"exp": expire})
+
+    # Кодируем данные в JWT токен
+    access_token = jwt.encode(
+        to_encode,  # Данные для кодирования
+        SECRET_KEY,  # Секретный ключ из конфига
+        algorithm=ALGORITHM  # Алгоритм шифрования
+    )
+
+
+    return {'access_token': access_token, 'refresh_token': 'fdsvmxlkgredgvvjksdfjvbnsdcsafwef', 'token_type': "bearer"}
+# В SWAGGER UI НЕОБХОДИМО НАПИСАТЬ 1 И 1
+
+# ЭТО ТОЛЬКО ДЛЯ ОТЛАДКИ
+# ЭТО ТОЛЬКО ДЛЯ ОТЛАДКИ
+# ЭТО ТОЛЬКО ДЛЯ ОТЛАДКИ

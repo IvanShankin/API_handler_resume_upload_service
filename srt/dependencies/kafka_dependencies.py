@@ -3,16 +3,11 @@ import json
 import os
 import socket
 from dotenv import load_dotenv
-from sqlalchemy.dialects.mysql import insert
-from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
-from confluent_kafka import Producer, KafkaException
+from confluent_kafka import Producer
 from confluent_kafka.admin import AdminClient, NewTopic
 from confluent_kafka import Consumer, KafkaException, KafkaError
 import sys
-
-from fastapi.params import Depends
-from rsa.common import extended_gcd
 
 from srt.config import logger, MIN_COMMIT_COUNT_KAFKA
 from srt.data_base.models import User
@@ -21,7 +16,7 @@ from srt.data_base.data_base import get_db
 load_dotenv()
 KAFKA_BOOTSTRAP_SERVERS = os.getenv('KAFKA_BOOTSTRAP_SERVERS')
 KAFKA_TOPIC_CONSUMER = os.getenv('KAFKA_TOPIC_CONSUMER')
-KAFKA_TOPIC_PRODUCER = os.getenv('KAFKA_TOPIC_PRODUCER')
+KAFKA_TOPIC_PRODUCER_FOR_UPLOADING_DATA = os.getenv('KAFKA_TOPIC_PRODUCER_FOR_UPLOADING_DATA')
 
 admin_client = AdminClient({'bootstrap.servers': KAFKA_BOOTSTRAP_SERVERS})\
 
@@ -77,7 +72,7 @@ class ProducerKafka:
 
     def sent_message(self, topic: str, key: str, value: str):
         try:
-            self.producer.produce(topic=topic, key=key, value=value, callback=self._acked)
+            self.producer.produce(topic=topic, key=key, value=json.dumps(value).encode('utf-8'), callback=self._acked)
             self.producer.flush()
             self.producer.poll(1)
         except KafkaException as e:

@@ -8,13 +8,14 @@ from fastapi import FastAPI
 
 from srt.data_base.data_base import create_data_base
 from srt.dependencies.kafka_dependencies import consumer_auth
+from requests import main_router
 
 load_dotenv()
 KAFKA_TOPIC_NAME = os.getenv('KAFKA_TOPIC_NAME')
 
 app = FastAPI()
 
-
+app.include_router(main_router)
 
 if __name__ == '__main__':
     # Запускаем consumer в отдельном потоке
