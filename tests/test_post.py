@@ -1,29 +1,24 @@
 import json
 import os
 import pytest
-
-from datetime import datetime
-
+import platform
 
 from dotenv import load_dotenv
 from confluent_kafka import KafkaError
 from httpx import AsyncClient, ASGITransport
-from fastapi import status
 from redis import Redis
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-import pymupdf as fitz
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfbase import pdfmetrics
 from docx import Document
-from docx.shared import Pt, Inches
 
 from srt.data_base.models import User, Requirements, Resume
 from srt.main import app
-from tests.conftest import consumer
 from srt.config import MAX_CHAR_REQUIREMENTS, MAX_CHAR_RESUME
+from tests.conftest import consumer
 from tests.conftest import PATH_TO_TEST_DIRECTORY
 
 load_dotenv()  # Загружает переменные из .env
@@ -32,6 +27,23 @@ KAFKA_TOPIC_CONSUMER= os.getenv('KAFKA_TOPIC_CONSUMER')
 KAFKA_TOPIC_PRODUCER_FOR_UPLOADING_DATA= os.getenv('KAFKA_TOPIC_PRODUCER_FOR_UPLOADING_DATA')
 KAFKA_TOPIC_PRODUCER_FOR_AI_HANDLER= os.getenv('KAFKA_TOPIC_PRODUCER_FOR_AI_HANDLER')
 
+
+def get_pdf_font():
+    if platform.system() == 'Windows':
+        try:
+            # Путь к Arial на Windows
+            font_path = os.path.join(os.environ['WINDIR'], 'Fonts', 'arial.ttf')
+            pdfmetrics.registerFont(TTFont('ArialUnicode', font_path))
+            return "ArialUnicode"
+        except:
+            return "Helvetica"
+    else:
+        try:
+            # Для Linux/CI используем DejaVu
+            pdfmetrics.registerFont(TTFont('DejaVuSans', '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'))
+            return "DejaVuSans"
+        except:
+            return "Helvetica"
 
 async def comparison_resume_data(resume: str, data_response: dict, db_session:  AsyncSession, redis_session: Redis):
     # Данные с БД
@@ -156,10 +168,9 @@ class TestCreateRequirementsFile:
             with open(test_file_path, "w", encoding="utf-8") as f:
                 f.write(requirements_content)
         elif extension == '.pdf':
-            # Регистрируем Unicode-шрифт (нужен файл шрифта)
-            pdfmetrics.registerFont(TTFont('ArialUnicode', 'arial.ttf'))  # Или другой Unicode-шрифт
+            font_name = get_pdf_font()
             c = canvas.Canvas(test_file_path, pagesize=letter)
-            c.setFont("ArialUnicode", 12)  # Используем Unicode-шрифт
+            c.setFont(font_name, 12)  # Используем Unicode-шрифт
             c.drawString(100, 750, requirements_content)
             c.save()
         elif extension == '.docx':
@@ -314,10 +325,9 @@ class TestCreateResumeFile:
             with open(test_file_path, "w", encoding="utf-8") as f:
                 f.write(resume_content)
         elif extension == '.pdf':
-            # Регистрируем Unicode-шрифт (нужен файл шрифта)
-            pdfmetrics.registerFont(TTFont('ArialUnicode', 'arial.ttf'))  # Или другой Unicode-шрифт
+            font_name = get_pdf_font()
             c = canvas.Canvas(test_file_path, pagesize=letter)
-            c.setFont("ArialUnicode", 12)  # Используем Unicode-шрифт
+            c.setFont(font_name, 12)  # Используем Unicode-шрифт
             c.drawString(100, 750, resume_content)
             c.save()
         elif extension == '.docx':

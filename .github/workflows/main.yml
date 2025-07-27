@@ -75,20 +75,10 @@ jobs:
           echo "Waiting for Kafka..."
           timeout 60 bash -c 'until docker run --network host --rm confluentinc/cp-kafka:7.2.2 kafka-topics --bootstrap-server localhost:29092 --list; do sleep 2; done'
 
-      # Основной шаг загрузки переменных
-      - name: Load .env file
-        uses: falti/dotenv-action@v1
-        with:
-          env-file: .env
-          override: true
-
-      # Проверка загруженных переменных (опционально)
-      - name: Debug env variables
+      - name: Check Kafka connection
         run: |
-          echo "DB_USER: ${{ secrets.DB_USER }}"
-          echo "DB_NAME: ${{ secrets.DB_NAME }}"
-          echo "KAFKA_TOPIC_CONSUMER: ${{ secrets.KAFKA_TOPIC_CONSUMER }}"
-          echo "KAFKA_TOPIC_PRODUCER_FOR_UPLOADING_DATA: ${{ secrets.KAFKA_TOPIC_PRODUCER_FOR_UPLOADING_DATA }}"
+          docker run --network host --rm confluentinc/cp-kafka:7.2.2 \
+            kafka-topics --bootstrap-server localhost:29092 --list
 
       - name: Setup Python
         uses: actions/setup-python@v4
@@ -100,18 +90,37 @@ jobs:
           pip install -r requirements.txt
           pip install psycopg2-binary redis kafka-python
 
+      - name: Install Unicode fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-dejavu fonts-liberation
+          sudo fc-cache -fv
+
       - name: Run tests
         env:
+          # JWT и токены
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
-          DB_USER: ${{ secrets.DB_USER }}
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-          DB_NAME: ${{ secrets.DB_NAME }}
+          ACCESS_TOKEN_EXPIRE_MINUTES: ${{ secrets.ACCESS_TOKEN_EXPIRE_MINUTES }}
+          REFRESH_TOKEN_EXPIRE_DAYS: ${{ secrets.REFRESH_TOKEN_EXPIRE_DAYS }}
+          ALGORITHM: ${{ secrets.ALGORITHM }}
+
+          # Redis
           REDIS_HOST: ${{ secrets.REDIS_HOST }}
           REDIS_PORT: ${{ secrets.REDIS_PORT }}
+
+          # Kafka
           KAFKA_BOOTSTRAP_SERVERS: ${{ secrets.KAFKA_BOOTSTRAP_SERVERS }}
           KAFKA_TOPIC_CONSUMER: ${{ secrets.KAFKA_TOPIC_CONSUMER }}
           KAFKA_TOPIC_PRODUCER_FOR_UPLOADING_DATA: ${{ secrets.KAFKA_TOPIC_PRODUCER_FOR_UPLOADING_DATA }}
           KAFKA_TOPIC_PRODUCER_FOR_AI_HANDLER: ${{ secrets.KAFKA_TOPIC_PRODUCER_FOR_AI_HANDLER }}
+
+          # PostgreSQL
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+
+          # Режим работы
           MODE: TEST
         run: pytest
 
@@ -123,11 +132,35 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Load .env for build
-        uses: falti/dotenv-action@v1
-        with:
-          env-file: .env
-          override: true
+      - name: Create .env file for build
+        run: |
+          # создание .env
+          cat <<EOF > .env
+
+          # JWT и токены
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          ACCESS_TOKEN_EXPIRE_MINUTES: ${{ secrets.ACCESS_TOKEN_EXPIRE_MINUTES }}
+          REFRESH_TOKEN_EXPIRE_DAYS: ${{ secrets.REFRESH_TOKEN_EXPIRE_DAYS }}
+          ALGORITHM: ${{ secrets.ALGORITHM }}
+
+          # Redis
+          REDIS_HOST: ${{ secrets.REDIS_HOST }}
+          REDIS_PORT: ${{ secrets.REDIS_PORT }}
+
+          # Kafka
+          KAFKA_BOOTSTRAP_SERVERS: ${{ secrets.KAFKA_BOOTSTRAP_SERVERS }}
+          KAFKA_TOPIC_CONSUMER: ${{ secrets.KAFKA_TOPIC_CONSUMER }}
+          KAFKA_TOPIC_PRODUCER_FOR_UPLOADING_DATA: ${{ secrets.KAFKA_TOPIC_PRODUCER_FOR_UPLOADING_DATA }}
+          KAFKA_TOPIC_PRODUCER_FOR_AI_HANDLER: ${{ secrets.KAFKA_TOPIC_PRODUCER_FOR_AI_HANDLER }}
+
+          # PostgreSQL
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+
+          # Режим работы
+          MODE: DEV
 
       - name: Docker compose build
         run: |

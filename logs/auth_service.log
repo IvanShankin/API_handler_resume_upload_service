@@ -774,3 +774,95 @@ msg: {"user_id": 1, "requirements": "\u0422\u0440\u0435\u0431\u043e\u0432\u0430\
 2025-07-27 20:47:39,733 - root - INFO - Database tables created successfully
 2025-07-27 20:47:42,669 - srt.config - INFO - ѕользователь с id = 1 не будет добавлен, т.к. уже имеетс€
 2025-07-27 20:47:42,748 - srt.config - INFO - ѕользователь с id = 2 не будет добавлен, т.к. уже имеетс€
+2025-07-28 00:27:45,241 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-28 00:27:45,321 - root - INFO - Creating database tables...
+2025-07-28 00:27:45,331 - root - INFO - Database tables created successfully
+2025-07-28 00:27:53,621 - srt.config - INFO - Kafka new message: err: None
+msg: {"resume_id": 85, "user_id": 1, "resume": "\u042d\u0442\u043e \u0442\u0435\u0441\u0442\u043e\u0432\u043e\u0435 \u0440\u0435\u0437\u044e\u043c\u0435 \u0432 \u0444\u0430\u0439\u043b\u0435."}
+2025-07-28 00:27:54,632 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 200 OK"
+2025-07-28 00:28:07,298 - srt.config - INFO - Kafka new message: err: None
+msg: {"resume_id": 86, "user_id": 1, "resume": "\u042d\u0442\u043e \u0442\u0435\u0441\u0442\u043e\u0432\u043e\u0435 \u0440\u0435\u0437\u044e\u043c\u0435 \u0432 \u0444\u0430\u0439\u043b\u0435."}
+2025-07-28 00:28:08,314 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 200 OK"
+2025-07-28 00:28:18,707 - srt.config - INFO - Kafka new message: err: None
+msg: {"resume_id": 87, "user_id": 1, "resume": "\u042d\u0442\u043e \u0442\u0435\u0441\u0442\u043e\u0432\u043e\u0435 \u0440\u0435\u0437\u044e\u043c\u0435 \u0432 \u0444\u0430\u0439\u043b\u0435."}
+2025-07-28 00:28:19,713 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 200 OK"
+2025-07-28 00:37:37,385 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-28 00:37:37,588 - root - INFO - Creating database tables...
+2025-07-28 00:37:37,597 - root - INFO - Database tables created successfully
+2025-07-28 00:37:37,684 - srt.config - WARNING - Failed to reset consumer for topic uploading_data_test: KafkaError{code=_STATE,val=-172,str="Failed to seek to offset 0: Local: Erroneous state"}
+2025-07-28 00:37:47,137 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 132, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-28 00:37:48,143 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-28 00:38:11,037 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 133, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-28 00:38:12,042 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-28 00:38:22,300 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 400 Bad Request"
+2025-07-28 00:40:51,996 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-28 00:40:52,079 - root - INFO - Creating database tables...
+2025-07-28 00:40:52,088 - root - INFO - Database tables created successfully
+2025-07-28 00:41:13,087 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 134, "user_id": 1, "requirements": "III IIIIIIIIII I IIIIII"}
+2025-07-28 00:41:14,092 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-28 00:41:16,936 - srt.config - WARNING - Failed to reset consumer for topic uploading_data_test: KafkaError{code=_STATE,val=-172,str="Failed to seek to offset 0: Local: Erroneous state"}
+2025-07-28 00:41:26,130 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 135, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-28 00:41:27,137 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-28 00:41:28,322 - srt.config - WARNING - Failed to reset consumer for topic authorization_test: KafkaError{code=_STATE,val=-172,str="Failed to seek to offset 0: Local: Erroneous state"}
+2025-07-28 00:41:37,447 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 400 Bad Request"
+2025-07-28 00:47:58,706 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-28 00:47:58,787 - root - INFO - Creating database tables...
+2025-07-28 00:47:58,797 - root - INFO - Database tables created successfully
+2025-07-28 00:47:58,886 - srt.config - WARNING - Failed to reset consumer for topic uploading_data_test: KafkaError{code=_STATE,val=-172,str="Failed to seek to offset 0: Local: Erroneous state"}
+2025-07-28 00:48:08,132 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 136, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-28 00:48:09,144 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-28 00:48:12,175 - srt.config - WARNING - Failed to reset consumer for topic uploading_data_test: KafkaError{code=_STATE,val=-172,str="Failed to seek to offset 0: Local: Erroneous state"}
+2025-07-28 00:48:21,467 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 137, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-28 00:48:22,474 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-28 00:48:32,946 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 138, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-28 00:48:33,959 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-28 00:48:44,398 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 400 Bad Request"
+2025-07-28 00:52:42,107 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-28 00:52:42,188 - root - INFO - Creating database tables...
+2025-07-28 00:52:42,198 - root - INFO - Database tables created successfully
+2025-07-28 00:52:51,424 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 148, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-28 00:52:52,441 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-28 00:53:04,705 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 149, "user_id": 1, "requirements": "III IIIIIIIIII I IIIIII"}
+2025-07-28 00:53:05,707 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-28 00:53:07,065 - srt.config - WARNING - Failed to reset consumer for topic uploading_data_test: KafkaError{code=_STATE,val=-172,str="Failed to seek to offset 0: Local: Erroneous state"}
+2025-07-28 00:53:16,239 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 150, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-28 00:53:17,250 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-28 00:53:27,567 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 400 Bad Request"
+2025-07-28 01:18:27,445 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-28 01:18:27,524 - root - INFO - Creating database tables...
+2025-07-28 01:18:27,534 - root - INFO - Database tables created successfully
+2025-07-28 01:18:36,767 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 151, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-28 01:18:37,770 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-28 01:18:50,106 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 152, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-28 01:18:51,118 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-28 01:18:52,269 - srt.config - WARNING - Failed to reset consumer for topic uploading_data_test: KafkaError{code=_STATE,val=-172,str="Failed to seek to offset 0: Local: Erroneous state"}
+2025-07-28 01:19:01,442 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 153, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-28 01:19:02,450 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-28 01:20:06,555 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-28 01:20:06,636 - root - INFO - Creating database tables...
+2025-07-28 01:20:06,646 - root - INFO - Database tables created successfully
+2025-07-28 01:20:15,978 - srt.config - INFO - Kafka new message: err: None
+msg: {"resume_id": 105, "user_id": 1, "resume": "\u042d\u0442\u043e \u0442\u0435\u0441\u0442\u043e\u0432\u043e\u0435 \u0440\u0435\u0437\u044e\u043c\u0435 \u0432 \u0444\u0430\u0439\u043b\u0435."}
+2025-07-28 01:20:16,994 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 200 OK"
+2025-07-28 01:20:29,321 - srt.config - INFO - Kafka new message: err: None
+msg: {"resume_id": 106, "user_id": 1, "resume": "\u042d\u0442\u043e \u0442\u0435\u0441\u0442\u043e\u0432\u043e\u0435 \u0440\u0435\u0437\u044e\u043c\u0435 \u0432 \u0444\u0430\u0439\u043b\u0435."}
+2025-07-28 01:20:30,338 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 200 OK"
+2025-07-28 01:20:31,563 - srt.config - WARNING - Failed to reset consumer for topic authorization_test: KafkaError{code=_STATE,val=-172,str="Failed to seek to offset 0: Local: Erroneous state"}
+2025-07-28 01:20:40,735 - srt.config - INFO - Kafka new message: err: None
+msg: {"resume_id": 107, "user_id": 1, "resume": "\u042d\u0442\u043e \u0442\u0435\u0441\u0442\u043e\u0432\u043e\u0435 \u0440\u0435\u0437\u044e\u043c\u0435 \u0432 \u0444\u0430\u0439\u043b\u0435."}
+2025-07-28 01:20:41,751 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 200 OK"
+2025-07-28 01:20:42,857 - srt.config - WARNING - Failed to reset consumer for topic authorization_test: KafkaError{code=_STATE,val=-172,str="Failed to seek to offset 0: Local: Erroneous state"}
+2025-07-28 01:20:51,927 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 400 Bad Request"
