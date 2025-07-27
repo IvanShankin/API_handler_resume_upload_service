@@ -1,6 +1,6 @@
 import json
 import os
-import pypdfium2
+import pymupdf as fitz
 import subprocess
 
 from docx import Document
@@ -30,7 +30,7 @@ from srt.config import LOGIN_BLOCK_TIME, STORAGE_TIME_REQUIREMENTS, STORAGE_TIME
     MAX_CHAR_RESUME, MAX_CHAR_REQUIREMENTS
 from srt.config import logger
 from srt.exception import (NotFoundData, InvalidCredentialsException, InvalidTokenException, NoRights,
-                           ToManyAttemptsEnter, InvalidFileFormat, CorruptedFile, TooManyCharacters)
+                           ToManyAttemptsEnter, InvalidFileFormat, CorruptedFile, TooManyCharacters, EmptyFileException)
 
 
 load_dotenv()
@@ -41,28 +41,32 @@ KAFKA_TOPIC_PRODUCER_FOR_AI_HANDLER = os.getenv('KAFKA_TOPIC_PRODUCER_FOR_AI_HAN
 router = APIRouter()
 
 async def extract_text_from_file(file: UploadFile, extensions: str, user_id: int) -> str:
-    if extensions == '.pdf':
-        pdf = pypdfium2.PdfDocument(await file.read())
-        text = ""
-        for page in pdf:
-            text += page.get_textpage().get_text_range()
-        await file.seek(0)  # Важно: перемотка файла для возможного повторного чтения
-        return text
-    elif extensions == '.docx':
-        try:
+    try:
+        if extensions == '.pdf':
+            content = await file.read()
+            doc = fitz.open(stream=content, filetype="pdf")
+            text = ""
+            for page in doc:
+                page_text = page.get_text()
+                text += ' '.join(line.strip() for line in page_text.splitlines() if line.strip())
+            await file.seek(0)# Важно: перемотка файла для возможного повторного чтения
+            return text
+        elif extensions == '.docx':
             content = await file.read()
             doc = Document(BytesIO(content))  # Используем BytesIO как файлоподобный объект
             await file.seek(0)
             text = "\n".join([paragraph.text for paragraph in doc.paragraphs])
             return text
-        except Exception:
-            raise CorruptedFile(file.filename)
-    else:
-        return (await file.read()).decode('utf-8')
+        else:
+            return (await file.read()).decode('utf-8')
+    except Exception as e:
+        print("\n\n\n\n\nОшибка\n\n\n\n")
+        print(f"Error extracting text: {str(e)}")  # Конкретная ошибка
+        raise CorruptedFile(file.filename)
 
 async def add_requirements(
-    user_id: int,
-    requirements: str,
+        user_id: int,
+        requirements: str,
     redis_client: Redis,
     db: AsyncSession
 )-> RequirementsOut:
@@ -133,7 +137,7 @@ async def create_requirements_text(
 
 
 @router.post('/create_requirements/file', response_model=RequirementsOut)
-async def create_requirements_doc(
+async def create_requirements_file(
     file: UploadFile = File(..., max_size=10_000_000),  # 10MB лимит
     current_user: User = Depends(get_current_user),
     redis_client: Redis = Depends(get_redis),
@@ -148,6 +152,9 @@ async def create_requirements_doc(
     if len(requirements) > MAX_CHAR_REQUIREMENTS:
         raise TooManyCharacters(MAX_CHAR_REQUIREMENTS)
 
+    if len(requirements) == 0:
+        raise EmptyFileException(file.filename)
+
     return await add_requirements(current_user.user_id, requirements, redis_client, db)
 
 
@@ -161,6 +168,7 @@ async def create_resume_text(
     # Создаем запись с требованиями
     if len(data.resume) > MAX_CHAR_RESUME:
         raise TooManyCharacters(MAX_CHAR_RESUME)
+
     return await add_resume(current_user.user_id, data.resume, redis_client, db)
 
 
@@ -175,11 +183,14 @@ async def create_resume_file(
     file_ext = Path(file.filename).suffix.lower()
 
     if file_ext not in ALLOWED_EXTENSIONS:
-        raise InvalidFileFormat
+        raise InvalidFileFormat(ALLOWED_EXTENSIONS)
 
     resume = await extract_text_from_file(file, file_ext, current_user.user_id)
     if len(resume) > MAX_CHAR_RESUME:
         raise TooManyCharacters(MAX_CHAR_RESUME)
+
+    if len(resume) == 0:
+        raise EmptyFileException(file.filename)
 
     return await add_resume(current_user.user_id, resume, redis_client, db)
 
@@ -260,7 +271,6 @@ async def login(
     to_encode = {"sub": str(user.user_id)}.copy()
 
     # Установка времени истечения токена
-
     expire = datetime.now(UTC) + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
 
     # Добавляем поле с временем истечения

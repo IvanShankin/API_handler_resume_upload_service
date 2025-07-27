@@ -79,3 +79,580 @@ msg: "fdsvcx"
 2025-07-26 21:11:35,908 - root - INFO - Database tables created successfully
 2025-07-26 21:11:38,520 - srt.config - INFO - Kafka new message: err: None
 msg: {"user_id": 1, "requirements": "string", "resume": "string"}
+2025-07-27 00:04:48,543 - root - INFO - Creating database api_handler_resume_upload_service_test...
+2025-07-27 00:04:49,321 - root - INFO - Database api_handler_resume_upload_service_test created successfully
+2025-07-27 00:04:49,535 - root - INFO - Creating database tables...
+2025-07-27 00:04:49,563 - root - INFO - Database tables created successfully
+2025-07-27 00:08:51,819 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 00:08:51,897 - root - INFO - Creating database tables...
+2025-07-27 00:08:51,906 - root - INFO - Database tables created successfully
+2025-07-27 00:09:01,483 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 1, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 00:09:02,494 - httpx - INFO - HTTP Request: POST http://test/create_requirements/text "HTTP/1.1 200 OK"
+2025-07-27 00:09:13,545 - httpx - INFO - HTTP Request: POST http://test/create_requirements/text "HTTP/1.1 413 Request Entity Too Large"
+2025-07-27 00:09:13,548 - httpx - INFO - HTTP Request: POST http://test/create_requirements/text "HTTP/1.1 413 Request Entity Too Large"
+2025-07-27 00:09:13,551 - httpx - INFO - HTTP Request: POST http://test/create_requirements/text "HTTP/1.1 413 Request Entity Too Large"
+2025-07-27 00:09:13,554 - httpx - INFO - HTTP Request: POST http://test/create_requirements/text "HTTP/1.1 413 Request Entity Too Large"
+2025-07-27 00:09:13,558 - httpx - INFO - HTTP Request: POST http://test/create_requirements/text "HTTP/1.1 413 Request Entity Too Large"
+2025-07-27 00:09:13,564 - httpx - INFO - HTTP Request: POST http://test/create_requirements/text "HTTP/1.1 413 Request Entity Too Large"
+2025-07-27 00:09:13,574 - httpx - INFO - HTTP Request: POST http://test/create_requirements/text "HTTP/1.1 413 Request Entity Too Large"
+2025-07-27 00:09:13,589 - httpx - INFO - HTTP Request: POST http://test/create_requirements/text "HTTP/1.1 413 Request Entity Too Large"
+2025-07-27 00:09:13,617 - httpx - INFO - HTTP Request: POST http://test/create_requirements/text "HTTP/1.1 413 Request Entity Too Large"
+2025-07-27 00:09:13,671 - httpx - INFO - HTTP Request: POST http://test/create_requirements/text "HTTP/1.1 413 Request Entity Too Large"
+2025-07-27 00:09:13,776 - httpx - INFO - HTTP Request: POST http://test/create_requirements/text "HTTP/1.1 413 Request Entity Too Large"
+2025-07-27 00:09:14,004 - httpx - INFO - HTTP Request: POST http://test/create_requirements/text "HTTP/1.1 413 Request Entity Too Large"
+2025-07-27 00:09:14,433 - httpx - INFO - HTTP Request: POST http://test/create_requirements/text "HTTP/1.1 413 Request Entity Too Large"
+2025-07-27 00:09:15,297 - httpx - INFO - HTTP Request: POST http://test/create_requirements/text "HTTP/1.1 413 Request Entity Too Large"
+2025-07-27 00:09:16,950 - httpx - INFO - HTTP Request: POST http://test/create_requirements/text "HTTP/1.1 413 Request Entity Too Large"
+2025-07-27 00:09:20,352 - httpx - INFO - HTTP Request: POST http://test/create_requirements/text "HTTP/1.1 413 Request Entity Too Large"
+2025-07-27 00:09:26,849 - httpx - INFO - HTTP Request: POST http://test/create_requirements/text "HTTP/1.1 413 Request Entity Too Large"
+2025-07-27 00:09:40,171 - httpx - INFO - HTTP Request: POST http://test/create_requirements/text "HTTP/1.1 413 Request Entity Too Large"
+2025-07-27 00:10:20,451 - httpx - INFO - HTTP Request: POST http://test/create_requirements/text "HTTP/1.1 413 Request Entity Too Large"
+2025-07-27 00:15:28,008 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 00:15:28,108 - root - INFO - Creating database tables...
+2025-07-27 00:15:28,125 - root - INFO - Database tables created successfully
+2025-07-27 00:15:37,446 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 2, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 00:15:38,462 - httpx - INFO - HTTP Request: POST http://test/create_requirements/text "HTTP/1.1 200 OK"
+2025-07-27 00:15:49,803 - httpx - INFO - HTTP Request: POST http://test/create_requirements/text "HTTP/1.1 413 Request Entity Too Large"
+2025-07-27 00:17:28,972 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 00:17:29,058 - root - INFO - Creating database tables...
+2025-07-27 00:17:29,067 - root - INFO - Database tables created successfully
+2025-07-27 00:17:38,304 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 3, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 00:17:39,317 - httpx - INFO - HTTP Request: POST http://test/create_requirements/text "HTTP/1.1 200 OK"
+2025-07-27 00:19:10,449 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 00:19:10,631 - root - INFO - Creating database tables...
+2025-07-27 00:19:10,641 - root - INFO - Database tables created successfully
+2025-07-27 00:19:19,879 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 4, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 00:19:20,887 - httpx - INFO - HTTP Request: POST http://test/create_requirements/text "HTTP/1.1 200 OK"
+2025-07-27 00:19:33,549 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 00:19:33,628 - root - INFO - Creating database tables...
+2025-07-27 00:19:33,638 - root - INFO - Database tables created successfully
+2025-07-27 00:19:42,902 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 5, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 00:19:43,916 - httpx - INFO - HTTP Request: POST http://test/create_requirements/text "HTTP/1.1 200 OK"
+2025-07-27 00:20:17,150 - httpx - INFO - HTTP Request: POST http://test/create_requirements/text "HTTP/1.1 413 Request Entity Too Large"
+2025-07-27 00:53:18,500 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 00:53:18,584 - root - INFO - Creating database tables...
+2025-07-27 00:53:18,592 - root - INFO - Database tables created successfully
+2025-07-27 00:53:27,831 - httpx - INFO - HTTP Request: POST http://test/create_requirements/text "HTTP/1.1 422 Unprocessable Entity"
+2025-07-27 00:53:37,163 - httpx - INFO - HTTP Request: POST http://test/create_resume/text "HTTP/1.1 413 Request Entity Too Large"
+2025-07-27 00:54:34,362 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 00:54:34,444 - root - INFO - Creating database tables...
+2025-07-27 00:54:34,453 - root - INFO - Database tables created successfully
+2025-07-27 00:54:43,594 - httpx - INFO - HTTP Request: POST http://test/create_requirements/text "HTTP/1.1 422 Unprocessable Entity"
+2025-07-27 00:54:52,951 - httpx - INFO - HTTP Request: POST http://test/create_resume/text "HTTP/1.1 413 Request Entity Too Large"
+2025-07-27 00:55:21,282 - root - INFO - Database api_handler_resume_upload_service already exists
+2025-07-27 00:55:21,384 - root - INFO - Creating database tables...
+2025-07-27 00:55:21,417 - root - INFO - Database tables created successfully
+2025-07-27 00:55:38,412 - srt.config - INFO - ѕользователь с id = 1 не будет добавлен, т.к. уже имеетс€
+2025-07-27 00:55:38,510 - srt.config - INFO - ѕользователь с id = 2 не будет добавлен, т.к. уже имеетс€
+2025-07-27 00:56:34,661 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 00:56:34,740 - root - INFO - Creating database tables...
+2025-07-27 00:56:34,750 - root - INFO - Database tables created successfully
+2025-07-27 00:56:44,106 - srt.config - INFO - Kafka new message: err: None
+msg: {"resume_id": 1, "user_id": 1, "resume": "\u044d\u0442\u043e \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 00:56:45,110 - httpx - INFO - HTTP Request: POST http://test/create_resume/text "HTTP/1.1 200 OK"
+2025-07-27 00:57:21,632 - httpx - INFO - HTTP Request: POST http://test/create_resume/text "HTTP/1.1 413 Request Entity Too Large"
+2025-07-27 11:52:37,721 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 11:52:37,811 - root - INFO - Creating database tables...
+2025-07-27 11:52:37,824 - root - INFO - Database tables created successfully
+2025-07-27 11:52:47,162 - srt.config - INFO - Kafka new message: err: None
+msg: {"resume_id": 2, "user_id": 1, "resume": "\u042d\u0442\u043e \u0442\u0435\u0441\u0442\u043e\u0432\u043e\u0435 \u0440\u0435\u0437\u044e\u043c\u0435 \u0432 \u0444\u0430\u0439\u043b\u0435."}
+2025-07-27 11:52:48,170 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 200 OK"
+2025-07-27 12:07:21,204 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 12:07:21,292 - root - INFO - Creating database tables...
+2025-07-27 12:07:21,301 - root - INFO - Database tables created successfully
+2025-07-27 12:07:30,540 - srt.config - INFO - Kafka new message: err: None
+msg: {"resume_id": 3, "user_id": 1, "resume": "\u042d\u0442\u043e \u0442\u0435\u0441\u0442\u043e\u0432\u043e\u0435 \u0440\u0435\u0437\u044e\u043c\u0435 \u0432 \u0444\u0430\u0439\u043b\u0435."}
+2025-07-27 12:07:31,544 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 200 OK"
+2025-07-27 12:08:25,427 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 12:08:25,506 - root - INFO - Creating database tables...
+2025-07-27 12:08:25,514 - root - INFO - Database tables created successfully
+2025-07-27 12:08:34,771 - srt.config - INFO - Kafka new message: err: None
+msg: {"resume_id": 4, "user_id": 1, "resume": "\u042d\u0442\u043e \u0442\u0435\u0441\u0442\u043e\u0432\u043e\u0435 \u0440\u0435\u0437\u044e\u043c\u0435 \u0432 \u0444\u0430\u0439\u043b\u0435."}
+2025-07-27 12:08:35,788 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 200 OK"
+2025-07-27 12:08:46,764 - srt.config - INFO - Kafka new message: err: None
+msg: {"resume_id": 5, "user_id": 1, "resume": "Hello, World!\r\n\u25a0\u25a0\u25a0 \u25a0\u25a0\u25a0\u25a0\u25a0\u25a0\u25a0\u25a0 \u25a0\u25a0\u25a0\u25a0\u25a0\u25a0 \u25a0 \u25a0\u25a0\u25a0\u25a0\u25a0."}
+2025-07-27 12:08:47,775 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 200 OK"
+2025-07-27 12:09:37,684 - srt.config - INFO - Kafka new message: err: None
+msg: {"resume_id": 6, "user_id": 1, "resume": "\u041f\u0440\u0438\u043c\u0435\u0440 \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u0430 Word\n\u042d\u0442\u043e \u0442\u0435\u0441\u0442\u043e\u0432\u043e\u0435 \u0440\u0435\u0437\u044e\u043c\u0435 \u0432 \u0444\u0430\u0439\u043b\u0435."}
+2025-07-27 12:09:38,688 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 200 OK"
+2025-07-27 12:11:27,390 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 12:11:27,574 - root - INFO - Creating database tables...
+2025-07-27 12:11:27,583 - root - INFO - Database tables created successfully
+2025-07-27 12:11:41,666 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 12:11:41,753 - root - INFO - Creating database tables...
+2025-07-27 12:11:41,764 - root - INFO - Database tables created successfully
+2025-07-27 12:11:57,441 - srt.config - INFO - Kafka new message: err: None
+msg: {"resume_id": 7, "user_id": 1, "resume": "\u25a0\u25a0\u25a0 \u25a0\u25a0\u25a0\u25a0\u25a0\u25a0\u25a0\u25a0 \u25a0\u25a0\u25a0\u25a0\u25a0\u25a0 \u25a0 \u25a0\u25a0\u25a0\u25a0\u25a0."}
+2025-07-27 12:11:58,449 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 200 OK"
+2025-07-27 12:12:09,901 - srt.config - INFO - Kafka new message: err: None
+msg: {"resume_id": 8, "user_id": 1, "resume": "\u042d\u0442\u043e \u0442\u0435\u0441\u0442\u043e\u0432\u043e\u0435 \u0440\u0435\u0437\u044e\u043c\u0435 \u0432 \u0444\u0430\u0439\u043b\u0435.\n\u042d\u0442\u043e \u0442\u0435\u0441\u0442\u043e\u0432\u043e\u0435 \u0440\u0435\u0437\u044e\u043c\u0435 \u0432 \u0444\u0430\u0439\u043b\u0435."}
+2025-07-27 12:12:10,908 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 200 OK"
+2025-07-27 12:13:06,320 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 12:13:06,400 - root - INFO - Creating database tables...
+2025-07-27 12:13:06,409 - root - INFO - Database tables created successfully
+2025-07-27 12:13:15,653 - srt.config - INFO - Kafka new message: err: None
+msg: {"resume_id": 9, "user_id": 1, "resume": "\u042d\u0442\u043e \u0442\u0435\u0441\u0442\u043e\u0432\u043e\u0435 \u0440\u0435\u0437\u044e\u043c\u0435 \u0432 \u0444\u0430\u0439\u043b\u0435."}
+2025-07-27 12:13:16,670 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 200 OK"
+2025-07-27 12:13:43,851 - srt.config - INFO - Kafka new message: err: None
+msg: {"resume_id": 10, "user_id": 1, "resume": "\u25a0\u25a0\u25a0 \u25a0\u25a0\u25a0\u25a0\u25a0\u25a0\u25a0\u25a0 \u25a0\u25a0\u25a0\u25a0\u25a0\u25a0 \u25a0 \u25a0\u25a0\u25a0\u25a0\u25a0."}
+2025-07-27 12:13:44,862 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 200 OK"
+2025-07-27 12:14:35,327 - srt.config - INFO - Kafka new message: err: None
+msg: {"resume_id": 11, "user_id": 1, "resume": "\u042d\u0442\u043e \u0442\u0435\u0441\u0442\u043e\u0432\u043e\u0435 \u0440\u0435\u0437\u044e\u043c\u0435 \u0432 \u0444\u0430\u0439\u043b\u0435."}
+2025-07-27 12:14:36,330 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 200 OK"
+2025-07-27 12:15:05,289 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 12:15:05,476 - root - INFO - Creating database tables...
+2025-07-27 12:15:05,488 - root - INFO - Database tables created successfully
+2025-07-27 12:15:14,854 - srt.config - INFO - Kafka new message: err: None
+msg: {"resume_id": 12, "user_id": 1, "resume": "\u042d\u0442\u043e \u0442\u0435\u0441\u0442\u043e\u0432\u043e\u0435 \u0440\u0435\u0437\u044e\u043c\u0435 \u0432 \u0444\u0430\u0439\u043b\u0435."}
+2025-07-27 12:15:15,863 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 200 OK"
+2025-07-27 12:15:30,780 - srt.config - INFO - Kafka new message: err: None
+msg: {"resume_id": 13, "user_id": 1, "resume": "\u25a0\u25a0\u25a0 \u25a0\u25a0\u25a0\u25a0\u25a0\u25a0\u25a0\u25a0 \u25a0\u25a0\u25a0\u25a0\u25a0\u25a0 \u25a0 \u25a0\u25a0\u25a0\u25a0\u25a0."}
+2025-07-27 12:15:31,797 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 200 OK"
+2025-07-27 12:16:21,836 - srt.config - INFO - Kafka new message: err: None
+msg: {"resume_id": 14, "user_id": 1, "resume": "\u042d\u0442\u043e \u0442\u0435\u0441\u0442\u043e\u0432\u043e\u0435 \u0440\u0435\u0437\u044e\u043c\u0435 \u0432 \u0444\u0430\u0439\u043b\u0435."}
+2025-07-27 12:16:22,852 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 200 OK"
+2025-07-27 12:20:38,459 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 12:20:38,643 - root - INFO - Creating database tables...
+2025-07-27 12:20:38,652 - root - INFO - Database tables created successfully
+2025-07-27 12:21:35,920 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 12:21:36,000 - root - INFO - Creating database tables...
+2025-07-27 12:21:36,009 - root - INFO - Database tables created successfully
+2025-07-27 12:22:45,605 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 12:22:45,688 - root - INFO - Creating database tables...
+2025-07-27 12:22:45,699 - root - INFO - Database tables created successfully
+2025-07-27 12:22:55,392 - srt.config - INFO - Kafka new message: err: None
+msg: {"resume_id": 15, "user_id": 1, "resume": "\u042d\u0442\u043e \u0442\u0435\u0441\u0442\u043e\u0432\u043e\u0435 \u0440\u0435\u0437\u044e\u043c\u0435 \u0432 \u0444\u0430\u0439\u043b\u0435."}
+2025-07-27 12:22:56,400 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 200 OK"
+2025-07-27 12:25:47,593 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 12:25:47,674 - root - INFO - Creating database tables...
+2025-07-27 12:25:47,684 - root - INFO - Database tables created successfully
+2025-07-27 12:27:17,702 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 12:27:17,782 - root - INFO - Creating database tables...
+2025-07-27 12:27:17,791 - root - INFO - Database tables created successfully
+2025-07-27 12:27:27,037 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 413 Request Entity Too Large"
+2025-07-27 12:32:17,138 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 12:32:17,216 - root - INFO - Creating database tables...
+2025-07-27 12:32:17,225 - root - INFO - Database tables created successfully
+2025-07-27 12:32:17,442 - srt.config - INFO - Kafka new message: err: None
+msg: {"resume_id": 16, "user_id": 1, "resume": ""}
+2025-07-27 12:32:18,458 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 200 OK"
+2025-07-27 12:36:46,768 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 12:36:46,849 - root - INFO - Creating database tables...
+2025-07-27 12:36:46,858 - root - INFO - Database tables created successfully
+2025-07-27 12:36:47,065 - srt.config - INFO - Kafka new message: err: None
+msg: {"resume_id": 17, "user_id": 1, "resume": ""}
+2025-07-27 12:36:48,075 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 200 OK"
+2025-07-27 12:37:52,387 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 12:37:52,570 - root - INFO - Creating database tables...
+2025-07-27 12:37:52,579 - root - INFO - Database tables created successfully
+2025-07-27 12:37:52,893 - srt.config - INFO - Kafka new message: err: None
+msg: {"resume_id": 18, "user_id": 1, "resume": ""}
+2025-07-27 12:37:53,904 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 200 OK"
+2025-07-27 12:38:18,058 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 12:38:18,142 - root - INFO - Creating database tables...
+2025-07-27 12:38:18,153 - root - INFO - Database tables created successfully
+2025-07-27 12:38:18,271 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 400 Bad Request"
+2025-07-27 12:49:07,769 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 12:49:07,952 - root - INFO - Creating database tables...
+2025-07-27 12:49:07,961 - root - INFO - Database tables created successfully
+2025-07-27 12:49:17,192 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 6, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 12:49:18,197 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 12:49:29,868 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 7, "user_id": 1, "requirements": "\u25a0\u25a0\u25a0 \u25a0\u25a0\u25a0\u25a0\u25a0\u25a0\u25a0\u25a0\u25a0\u25a0 \u25a0 \u25a0\u25a0\u25a0\u25a0\u25a0\u25a0"}
+2025-07-27 12:49:30,882 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 12:50:20,914 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 8, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 12:50:21,929 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 12:51:22,342 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 12:51:22,442 - root - INFO - Creating database tables...
+2025-07-27 12:51:22,453 - root - INFO - Database tables created successfully
+2025-07-27 12:51:31,703 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 9, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 12:51:32,709 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 12:51:44,437 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 10, "user_id": 1, "requirements": "\u25a0\u25a0\u25a0 \u25a0\u25a0\u25a0\u25a0\u25a0\u25a0\u25a0\u25a0\u25a0\u25a0 \u25a0 \u25a0\u25a0\u25a0\u25a0\u25a0\u25a0"}
+2025-07-27 12:51:45,453 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 12:52:35,348 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 11, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 12:52:36,359 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 12:52:36,494 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 400 Bad Request"
+2025-07-27 13:01:52,085 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 13:01:52,199 - root - INFO - Creating database tables...
+2025-07-27 13:01:52,216 - root - INFO - Database tables created successfully
+2025-07-27 13:02:01,606 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 12, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 13:02:02,617 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 13:02:13,743 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 400 Bad Request"
+2025-07-27 13:02:23,227 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 13, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 13:02:24,241 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 13:03:05,099 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 400 Bad Request"
+2025-07-27 13:03:32,586 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 13:03:32,813 - root - INFO - Creating database tables...
+2025-07-27 13:03:32,828 - root - INFO - Database tables created successfully
+2025-07-27 13:03:42,162 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 14, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 13:03:43,174 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 13:04:00,045 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 400 Bad Request"
+2025-07-27 13:04:09,995 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 15, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 13:04:11,028 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 13:04:51,683 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 400 Bad Request"
+2025-07-27 13:08:51,060 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 13:08:51,139 - root - INFO - Creating database tables...
+2025-07-27 13:08:51,148 - root - INFO - Database tables created successfully
+2025-07-27 13:09:00,297 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 400 Bad Request"
+2025-07-27 13:09:09,751 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 16, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 13:09:10,756 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 13:09:20,250 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 17, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 13:09:21,256 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 13:11:54,453 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 13:11:54,537 - root - INFO - Creating database tables...
+2025-07-27 13:11:54,546 - root - INFO - Database tables created successfully
+2025-07-27 13:12:03,692 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 400 Bad Request"
+2025-07-27 13:12:13,579 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 18, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 13:12:14,595 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 13:12:24,044 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 19, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 13:12:25,058 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 13:31:02,139 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 13:31:02,228 - root - INFO - Creating database tables...
+2025-07-27 13:31:02,237 - root - INFO - Database tables created successfully
+2025-07-27 13:31:11,393 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 400 Bad Request"
+2025-07-27 13:31:21,168 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 20, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 13:31:22,177 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 13:31:31,724 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 21, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 13:31:32,738 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 13:31:52,968 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 13:31:53,055 - root - INFO - Creating database tables...
+2025-07-27 13:31:53,064 - root - INFO - Database tables created successfully
+2025-07-27 13:32:02,351 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 22, "user_id": 1, "requirements": "\u00b7\u00b7\u00b7 \u00b7\u00b7\u00b7\u00b7\u00b7\u00b7\u00b7\u00b7\u00b7\u00b7 \u00b7 \u00b7\u00b7\u00b7\u00b7\u00b7\u00b7\n"}
+2025-07-27 13:32:03,355 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 13:32:43,039 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 23, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 13:32:44,041 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 13:33:33,681 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 24, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 13:33:34,690 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 14:08:29,354 - root - INFO - Database api_handler_resume_upload_service already exists
+2025-07-27 14:08:29,460 - root - INFO - Creating database tables...
+2025-07-27 14:08:29,472 - root - INFO - Database tables created successfully
+2025-07-27 14:08:32,280 - srt.config - INFO - ѕользователь с id = 1 не будет добавлен, т.к. уже имеетс€
+2025-07-27 14:08:32,364 - srt.config - INFO - ѕользователь с id = 2 не будет добавлен, т.к. уже имеетс€
+2025-07-27 14:08:51,197 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 3, "user_id": 1, "requirements": "\u0440\u0430\u043f\u044b\u0440\u0430\u043f \n"}
+2025-07-27 14:11:14,606 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 14:11:14,682 - root - INFO - Creating database tables...
+2025-07-27 14:11:14,691 - root - INFO - Database tables created successfully
+2025-07-27 14:11:33,360 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 25, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 14:11:34,368 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 14:11:43,907 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 26, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 14:11:44,908 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 14:12:58,015 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 14:12:58,094 - root - INFO - Creating database tables...
+2025-07-27 14:12:58,103 - root - INFO - Database tables created successfully
+2025-07-27 14:13:07,443 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 27, "user_id": 1, "requirements": "\u00b7\u00b7\u00b7 \u00b7\u00b7\u00b7\u00b7\u00b7\u00b7\u00b7\u00b7\u00b7\u00b7 \u00b7 \u00b7\u00b7\u00b7\u00b7\u00b7\u00b7\n"}
+2025-07-27 14:13:08,450 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 14:13:19,719 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 28, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 14:13:20,730 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 14:14:19,094 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 14:14:19,260 - root - INFO - Creating database tables...
+2025-07-27 14:14:19,279 - root - INFO - Database tables created successfully
+2025-07-27 14:14:28,818 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 29, "user_id": 1, "requirements": "\u00b7\u00b7\u00b7 \u00b7\u00b7\u00b7\u00b7\u00b7\u00b7\u00b7\u00b7\u00b7\u00b7 \u00b7 \u00b7\u00b7\u00b7\u00b7\u00b7\u00b7\n"}
+2025-07-27 14:14:29,833 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 14:14:41,706 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 30, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 14:14:42,716 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 14:15:32,828 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 31, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 14:15:33,845 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 14:16:03,914 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 14:16:04,178 - root - INFO - Creating database tables...
+2025-07-27 14:16:04,197 - root - INFO - Database tables created successfully
+2025-07-27 14:16:13,717 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 32, "user_id": 1, "requirements": "\u00b7\u00b7\u00b7 \u00b7\u00b7\u00b7\u00b7\u00b7\u00b7\u00b7\u00b7\u00b7\u00b7 \u00b7 \u00b7\u00b7\u00b7\u00b7\u00b7\u00b7\n"}
+2025-07-27 14:16:14,735 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 14:20:12,587 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 14:20:12,671 - root - INFO - Creating database tables...
+2025-07-27 14:20:12,681 - root - INFO - Database tables created successfully
+2025-07-27 14:20:21,948 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 33, "user_id": 1, "requirements": "\u00b7\u00b7\u00b7 \u00b7\u00b7\u00b7\u00b7\u00b7\u00b7\u00b7\u00b7\u00b7\u00b7 \u00b7 \u00b7\u00b7\u00b7\u00b7\u00b7\u00b7"}
+2025-07-27 14:20:22,952 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 14:20:58,353 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 34, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 14:20:59,369 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 14:21:49,004 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 35, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 14:21:50,006 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 14:23:05,213 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 14:23:05,299 - root - INFO - Creating database tables...
+2025-07-27 14:23:05,309 - root - INFO - Database tables created successfully
+2025-07-27 14:23:14,666 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 36, "user_id": 1, "requirements": "III IIIIIIIIII I IIIIII"}
+2025-07-27 14:23:15,677 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 14:23:27,154 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 37, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 14:23:28,169 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 14:31:55,364 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 14:31:55,447 - root - INFO - Creating database tables...
+2025-07-27 14:31:55,456 - root - INFO - Database tables created successfully
+2025-07-27 14:32:05,032 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 38, "user_id": 1, "requirements": "III IIIIIIIIII I IIIIII"}
+2025-07-27 14:32:06,043 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 14:32:17,166 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 39, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 14:32:18,170 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 14:33:12,394 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 14:33:12,473 - root - INFO - Creating database tables...
+2025-07-27 14:33:12,483 - root - INFO - Database tables created successfully
+2025-07-27 14:33:21,753 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 40, "user_id": 1, "requirements": "III IIIIIIIIII I IIIIII"}
+2025-07-27 14:33:22,764 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 14:33:57,885 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 41, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 14:33:58,893 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 14:34:42,169 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 14:34:42,331 - root - INFO - Creating database tables...
+2025-07-27 14:34:42,349 - root - INFO - Database tables created successfully
+2025-07-27 14:35:56,162 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 14:35:56,241 - root - INFO - Creating database tables...
+2025-07-27 14:35:56,251 - root - INFO - Database tables created successfully
+2025-07-27 14:36:05,610 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 42, "user_id": 1, "requirements": "III IIIIIIIIII I IIIIII"}
+2025-07-27 14:36:06,617 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 14:36:26,475 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 43, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 14:36:27,477 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 14:37:17,131 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 44, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 14:37:18,141 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 14:38:49,304 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 14:38:49,384 - root - INFO - Creating database tables...
+2025-07-27 14:38:49,393 - root - INFO - Database tables created successfully
+2025-07-27 14:38:58,691 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 45, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 14:38:59,699 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 14:39:10,914 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 46, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 14:39:11,921 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 14:39:26,724 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 14:39:26,907 - root - INFO - Creating database tables...
+2025-07-27 14:39:26,916 - root - INFO - Database tables created successfully
+2025-07-27 14:39:36,205 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 47, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435\n"}
+2025-07-27 14:39:37,208 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 14:40:14,918 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 48, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 14:40:15,929 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 14:41:05,591 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 49, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 14:41:06,605 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 14:45:34,422 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 14:45:34,504 - root - INFO - Creating database tables...
+2025-07-27 14:45:34,513 - root - INFO - Database tables created successfully
+2025-07-27 14:45:43,859 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 50, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 14:45:44,865 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 14:45:56,415 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 51, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 14:45:57,424 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 14:46:47,391 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 52, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 14:46:48,404 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 14:52:32,279 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 14:52:32,359 - root - INFO - Creating database tables...
+2025-07-27 14:52:32,368 - root - INFO - Database tables created successfully
+2025-07-27 14:52:41,703 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 53, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 14:52:42,709 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 14:52:54,130 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 54, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 14:52:55,142 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 14:53:44,982 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 55, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 14:53:45,988 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 14:54:03,973 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 14:54:04,068 - root - INFO - Creating database tables...
+2025-07-27 14:54:04,077 - root - INFO - Database tables created successfully
+2025-07-27 14:54:13,298 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 56, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 14:54:14,314 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 14:54:40,400 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 57, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 14:54:41,416 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 14:55:31,425 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 58, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 14:55:32,432 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 14:55:41,712 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 59, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 14:55:42,724 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 15:01:13,007 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 15:01:13,088 - root - INFO - Creating database tables...
+2025-07-27 15:01:13,097 - root - INFO - Database tables created successfully
+2025-07-27 15:01:13,185 - srt.config - WARNING - Failed to reset consumer for topic uploading_data: KafkaError{code=_STATE,val=-172,str="Failed to seek to offset 0: Local: Erroneous state"}
+2025-07-27 15:01:22,737 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 60, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 15:01:23,743 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 15:01:34,961 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 61, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 15:01:35,973 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 15:01:45,272 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 62, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 15:01:46,283 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 15:01:46,391 - srt.config - WARNING - Failed to reset consumer for topic uploading_data: KafkaError{code=_STATE,val=-172,str="Failed to seek to offset 0: Local: Erroneous state"}
+2025-07-27 15:01:55,568 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 63, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 15:01:56,571 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 15:07:00,250 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 15:07:00,333 - root - INFO - Creating database tables...
+2025-07-27 15:07:00,342 - root - INFO - Database tables created successfully
+2025-07-27 15:07:10,703 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 15:07:10,783 - root - INFO - Creating database tables...
+2025-07-27 15:07:10,791 - root - INFO - Database tables created successfully
+2025-07-27 15:07:19,926 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 400 Bad Request"
+2025-07-27 15:12:10,763 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 15:12:10,848 - root - INFO - Creating database tables...
+2025-07-27 15:12:10,858 - root - INFO - Database tables created successfully
+2025-07-27 15:12:20,108 - srt.config - INFO - Kafka new message: err: None
+msg: {"resume_id": 19, "user_id": 1, "resume": "\u042d\u0442\u043e \u0442\u0435\u0441\u0442\u043e\u0432\u043e\u0435 \u0440\u0435\u0437\u044e\u043c\u0435 \u0432 \u0444\u0430\u0439\u043b\u0435."}
+2025-07-27 15:12:21,116 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 200 OK"
+2025-07-27 15:12:32,428 - srt.config - INFO - Kafka new message: err: None
+msg: {"resume_id": 20, "user_id": 1, "resume": "\u042d\u0442\u043e \u0442\u0435\u0441\u0442\u043e\u0432\u043e\u0435 \u0440\u0435\u0437\u044e\u043c\u0435 \u0432 \u0444\u0430\u0439\u043b\u0435."}
+2025-07-27 15:12:33,434 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 200 OK"
+2025-07-27 15:12:33,539 - srt.config - WARNING - Failed to reset consumer for topic authorization_test: KafkaError{code=_STATE,val=-172,str="Failed to seek to offset 0: Local: Erroneous state"}
+2025-07-27 15:12:42,727 - srt.config - INFO - Kafka new message: err: None
+msg: {"resume_id": 21, "user_id": 1, "resume": "\u042d\u0442\u043e \u0442\u0435\u0441\u0442\u043e\u0432\u043e\u0435 \u0440\u0435\u0437\u044e\u043c\u0435 \u0432 \u0444\u0430\u0439\u043b\u0435."}
+2025-07-27 15:13:34,695 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 15:13:34,778 - root - INFO - Creating database tables...
+2025-07-27 15:13:34,787 - root - INFO - Database tables created successfully
+2025-07-27 15:13:54,082 - srt.config - INFO - Kafka new message: err: None
+msg: {"resume_id": 22, "user_id": 1, "resume": "\u042d\u0442\u043e \u0442\u0435\u0441\u0442\u043e\u0432\u043e\u0435 \u0440\u0435\u0437\u044e\u043c\u0435 \u0432 \u0444\u0430\u0439\u043b\u0435."}
+2025-07-27 15:13:55,098 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 200 OK"
+2025-07-27 15:13:55,425 - srt.config - WARNING - Failed to reset consumer for topic uploading_data: KafkaError{code=_STATE,val=-172,str="Failed to seek to offset 0: Local: Erroneous state"}
+2025-07-27 15:14:04,639 - srt.config - INFO - Kafka new message: err: None
+msg: {"resume_id": 23, "user_id": 1, "resume": "\u042d\u0442\u043e \u0442\u0435\u0441\u0442\u043e\u0432\u043e\u0435 \u0440\u0435\u0437\u044e\u043c\u0435 \u0432 \u0444\u0430\u0439\u043b\u0435."}
+2025-07-27 15:14:05,643 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 200 OK"
+2025-07-27 15:14:14,935 - srt.config - INFO - Kafka new message: err: None
+msg: {"resume_id": 24, "user_id": 1, "resume": "\u042d\u0442\u043e \u0442\u0435\u0441\u0442\u043e\u0432\u043e\u0435 \u0440\u0435\u0437\u044e\u043c\u0435 \u0432 \u0444\u0430\u0439\u043b\u0435."}
+2025-07-27 15:14:15,981 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 200 OK"
+2025-07-27 15:14:29,638 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 15:14:29,737 - root - INFO - Creating database tables...
+2025-07-27 15:14:29,746 - root - INFO - Database tables created successfully
+2025-07-27 15:14:29,971 - srt.config - WARNING - Failed to reset consumer for topic uploading_data: KafkaError{code=_STATE,val=-172,str="Failed to seek to offset 0: Local: Erroneous state"}
+2025-07-27 15:14:39,053 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 400 Bad Request"
+2025-07-27 15:14:49,187 - srt.config - INFO - Kafka new message: err: None
+msg: {"resume_id": 25, "user_id": 1, "resume": "\u042d\u0442\u043e \u0442\u0435\u0441\u0442\u043e\u0432\u043e\u0435 \u0440\u0435\u0437\u044e\u043c\u0435 \u0432 \u0444\u0430\u0439\u043b\u0435."}
+2025-07-27 15:14:50,203 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 200 OK"
+2025-07-27 15:15:05,116 - srt.config - WARNING - Failed to reset consumer for topic authorization_test: KafkaError{code=_STATE,val=-172,str="Failed to seek to offset 0: Local: Erroneous state"}
+2025-07-27 15:15:05,116 - srt.config - WARNING - Failed to reset consumer for topic uploading_data: KafkaError{code=_STATE,val=-172,str="Failed to seek to offset 0: Local: Erroneous state"}
+2025-07-27 15:15:12,427 - srt.config - INFO - Kafka new message: err: None
+msg: {"resume_id": 26, "user_id": 1, "resume": "\u042d\u0442\u043e \u0442\u0435\u0441\u0442\u043e\u0432\u043e\u0435 \u0440\u0435\u0437\u044e\u043c\u0435 \u0432 \u0444\u0430\u0439\u043b\u0435."}
+2025-07-27 15:15:13,437 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 200 OK"
+2025-07-27 15:16:55,161 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 15:16:55,242 - root - INFO - Creating database tables...
+2025-07-27 15:16:55,252 - root - INFO - Database tables created successfully
+2025-07-27 15:17:04,533 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 64, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 15:17:05,549 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 15:17:15,448 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 65, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 15:17:16,453 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 15:17:25,918 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 66, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 15:17:26,926 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 15:17:36,108 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 400 Bad Request"
+2025-07-27 15:24:55,485 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 15:24:55,673 - root - INFO - Creating database tables...
+2025-07-27 15:24:55,681 - root - INFO - Database tables created successfully
+2025-07-27 15:24:55,768 - srt.config - WARNING - Failed to reset consumer for topic uploading_data: KafkaError{code=_STATE,val=-172,str="Failed to seek to offset 0: Local: Erroneous state"}
+2025-07-27 15:25:04,930 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 68, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 15:25:05,947 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 15:25:17,213 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 69, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 15:25:18,228 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 15:25:27,779 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 70, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 15:25:28,788 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 15:25:38,001 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 400 Bad Request"
+2025-07-27 15:25:38,229 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 400 Bad Request"
+2025-07-27 15:26:55,217 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 15:26:55,299 - root - INFO - Creating database tables...
+2025-07-27 15:26:55,308 - root - INFO - Database tables created successfully
+2025-07-27 15:27:04,886 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 71, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 15:27:05,902 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 15:27:16,943 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 72, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-27 15:27:17,959 - httpx - INFO - HTTP Request: POST http://test/create_requirements/file "HTTP/1.1 200 OK"
+2025-07-27 15:36:35,991 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 15:36:36,085 - root - INFO - Creating database tables...
+2025-07-27 15:36:36,094 - root - INFO - Database tables created successfully
+2025-07-27 15:36:36,221 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 413 Request Entity Too Large"
+2025-07-27 15:36:48,759 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 15:36:48,837 - root - INFO - Creating database tables...
+2025-07-27 15:36:48,846 - root - INFO - Database tables created successfully
+2025-07-27 15:36:48,935 - srt.config - WARNING - Failed to reset consumer for topic uploading_data: KafkaError{code=_STATE,val=-172,str="Failed to seek to offset 0: Local: Erroneous state"}
+2025-07-27 15:36:58,415 - srt.config - INFO - Kafka new message: err: None
+msg: {"resume_id": 31, "user_id": 1, "resume": "\u042d\u0442\u043e \u0442\u0435\u0441\u0442\u043e\u0432\u043e\u0435 \u0440\u0435\u0437\u044e\u043c\u0435 \u0432 \u0444\u0430\u0439\u043b\u0435."}
+2025-07-27 15:36:59,421 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 200 OK"
+2025-07-27 15:37:10,379 - srt.config - INFO - Kafka new message: err: None
+msg: {"resume_id": 32, "user_id": 1, "resume": "\u042d\u0442\u043e \u0442\u0435\u0441\u0442\u043e\u0432\u043e\u0435 \u0440\u0435\u0437\u044e\u043c\u0435 \u0432 \u0444\u0430\u0439\u043b\u0435."}
+2025-07-27 15:37:11,395 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 200 OK"
+2025-07-27 15:37:20,789 - srt.config - INFO - Kafka new message: err: None
+msg: {"resume_id": 33, "user_id": 1, "resume": "\u042d\u0442\u043e \u0442\u0435\u0441\u0442\u043e\u0432\u043e\u0435 \u0440\u0435\u0437\u044e\u043c\u0435 \u0432 \u0444\u0430\u0439\u043b\u0435."}
+2025-07-27 15:37:21,800 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 200 OK"
+2025-07-27 15:37:30,978 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 400 Bad Request"
+2025-07-27 15:37:31,099 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 400 Bad Request"
+2025-07-27 15:41:08,681 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 15:41:08,769 - root - INFO - Creating database tables...
+2025-07-27 15:41:08,779 - root - INFO - Database tables created successfully
+2025-07-27 15:41:18,034 - srt.config - INFO - Kafka new message: err: None
+msg: {"resume_id": 34, "user_id": 1, "resume": "\u042d\u0442\u043e \u0442\u0435\u0441\u0442\u043e\u0432\u043e\u0435 \u0440\u0435\u0437\u044e\u043c\u0435 \u0432 \u0444\u0430\u0439\u043b\u0435."}
+2025-07-27 15:41:19,048 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 200 OK"
+2025-07-27 15:41:30,429 - srt.config - INFO - Kafka new message: err: None
+msg: {"resume_id": 35, "user_id": 1, "resume": "\u042d\u0442\u043e \u0442\u0435\u0441\u0442\u043e\u0432\u043e\u0435 \u0440\u0435\u0437\u044e\u043c\u0435 \u0432 \u0444\u0430\u0439\u043b\u0435."}
+2025-07-27 15:41:31,441 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 200 OK"
+2025-07-27 15:41:40,859 - srt.config - INFO - Kafka new message: err: None
+msg: {"resume_id": 36, "user_id": 1, "resume": "\u042d\u0442\u043e \u0442\u0435\u0441\u0442\u043e\u0432\u043e\u0435 \u0440\u0435\u0437\u044e\u043c\u0435 \u0432 \u0444\u0430\u0439\u043b\u0435."}
+2025-07-27 15:41:41,874 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 200 OK"
+2025-07-27 15:41:42,097 - srt.config - WARNING - Failed to reset consumer for topic authorization_test: KafkaError{code=_STATE,val=-172,str="Failed to seek to offset 0: Local: Erroneous state"}
+2025-07-27 15:41:51,173 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 400 Bad Request"
+2025-07-27 15:41:51,542 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 400 Bad Request"
+2025-07-27 15:43:59,408 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 15:43:59,491 - root - INFO - Creating database tables...
+2025-07-27 15:43:59,500 - root - INFO - Database tables created successfully
+2025-07-27 15:43:59,712 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 400 Bad Request"
+2025-07-27 15:51:22,943 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 15:51:23,021 - root - INFO - Creating database tables...
+2025-07-27 15:51:23,030 - root - INFO - Database tables created successfully
+2025-07-27 15:51:23,149 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 400 Bad Request"
+2025-07-27 15:56:16,320 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 15:56:16,506 - root - INFO - Creating database tables...
+2025-07-27 15:56:16,516 - root - INFO - Database tables created successfully
+2025-07-27 15:56:16,644 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 413 Request Entity Too Large"
+2025-07-27 15:56:30,486 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 15:56:30,583 - root - INFO - Creating database tables...
+2025-07-27 15:56:30,593 - root - INFO - Database tables created successfully
+2025-07-27 15:56:30,743 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 400 Bad Request"
+2025-07-27 15:57:53,756 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-27 15:57:53,935 - root - INFO - Creating database tables...
+2025-07-27 15:57:53,944 - root - INFO - Database tables created successfully
+2025-07-27 15:57:54,087 - httpx - INFO - HTTP Request: POST http://test/create_resume/file "HTTP/1.1 400 Bad Request"

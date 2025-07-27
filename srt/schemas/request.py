@@ -3,7 +3,6 @@ from pydantic import BaseModel, EmailStr
 class RequirementsRequest(BaseModel):
     requirements: str
 
-
 class ResumeRequest(BaseModel):
     resume: str
 
