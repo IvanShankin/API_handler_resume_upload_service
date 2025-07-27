@@ -23,7 +23,7 @@ ALGORITHM = os.getenv('ALGORITHM')
 import pytest_asyncio
 
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import delete
+from sqlalchemy import delete, select, func
 from confluent_kafka.cimpl import NewTopic, Producer, TopicPartition
 
 from srt.data_base.data_base import create_data_base, get_db
@@ -154,13 +154,20 @@ async def clearing_kafka():
 
 
 @pytest_asyncio.fixture(scope="function")
-async def create_user(db_session: AsyncSession):
+async def create_user(db_session: AsyncSession)->dict:
     """
     Создает тестового пользователя и возвращает данные о нём
     :return: dict {'user_id', 'access_token'}
     """
+    result_db = await db_session.execute(func.max(User.user_id))
+    max_user_id = result_db.scalar_one_or_none()
 
-    new_user = User(user_id = 1)
+    if max_user_id:
+        new_user_id = max_user_id + 1
+    else:
+        new_user_id = 1
+
+    new_user = User(user_id = new_user_id)
     db_session.add(new_user)
     await db_session.commit()
     await db_session.refresh(new_user)
@@ -183,4 +190,33 @@ async def create_user(db_session: AsyncSession):
     return {
         "user_id": new_user.user_id,
         "access_token": access_token,
+    }
+
+@pytest_asyncio.fixture(scope="function")
+async def create_requirements_and_resume(db_session: AsyncSession, create_user)->dict:
+    """
+    Создает требования
+    :return: dict {'user_id', 'access_token', 'requirements_id', 'resume_id', 'requirements', 'resume'}
+    """
+    new_requirements = Requirements(
+        user_id=create_user['user_id'],
+        requirements='Требования к резюме'
+    )
+    new_resume = Resume(
+        user_id=create_user['user_id'],
+        resume='Тестовое резюме'
+    )
+    db_session.add(new_requirements)
+    db_session.add(new_resume)
+    await db_session.commit()
+    await db_session.refresh(new_requirements)
+    await db_session.refresh(new_resume)
+
+    return {
+        'user_id': create_user['user_id'],
+        'access_token': create_user['access_token'],
+        'requirements_id': new_requirements.requirements_id,
+        'resume_id': new_resume.resume_id,
+        'requirements': new_requirements.requirements,
+        'resume': new_resume.resume
     }

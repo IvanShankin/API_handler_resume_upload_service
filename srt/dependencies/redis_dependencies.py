@@ -20,4 +20,4 @@ async def get_redis():
     try:
         yield redis_client
     finally:
-        pass # Не закрываем соединение явно, так как Redis клиент управляет соединением сам
+        await redis_client.aclose()

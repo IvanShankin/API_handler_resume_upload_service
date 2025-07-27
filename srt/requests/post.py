@@ -207,9 +207,10 @@ async def start_processing(
         requirements_from_db = await db.execute(select(Requirements).where(Requirements.requirements_id == data.requirements_id))
         requirements = requirements_from_db.scalar_one_or_none()
         if not requirements:
-            raise NotFoundData()
+            print('тут')
+            raise NotFoundData() #  ошибка 404
         if requirements.user_id != current_user.user_id:
-            raise NoRights()
+            raise NoRights() # ошибка 403
         requirements = requirements.requirements # получаем требования к резюме
 
     resume = await redis_client.get(f'resume:{data.resume_id}')
@@ -217,9 +218,9 @@ async def start_processing(
         resume_from_db = await db.execute(select(Resume).where(Resume.resume_id == data.resume_id))
         resume = resume_from_db.scalar_one_or_none()
         if not resume:
-            raise NotFoundData()
+            raise NotFoundData() #  ошибка 404
         if resume.user_id != current_user.user_id:
-            raise NoRights()
+            raise NoRights() # ошибка 403
         resume = resume.resume # получаем требования к резюме
 
     producer.sent_message(

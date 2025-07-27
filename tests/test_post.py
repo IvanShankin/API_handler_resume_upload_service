@@ -33,7 +33,7 @@ KAFKA_TOPIC_PRODUCER_FOR_UPLOADING_DATA= os.getenv('KAFKA_TOPIC_PRODUCER_FOR_UPL
 KAFKA_TOPIC_PRODUCER_FOR_AI_HANDLER= os.getenv('KAFKA_TOPIC_PRODUCER_FOR_AI_HANDLER')
 
 
-async def test_resume_data(resume: str, data_response: dict, db_session:  AsyncSession, redis_session: Redis):
+async def comparison_resume_data(resume: str, data_response: dict, db_session:  AsyncSession, redis_session: Redis):
     # Данные с БД
     result_db = await db_session.execute(select(Resume).where(Resume.resume_id == data_response['resume_id']))
     data_db = result_db.scalar_one_or_none()
@@ -63,7 +63,7 @@ async def test_resume_data(resume: str, data_response: dict, db_session:  AsyncS
     assert data_db.user_id == data_kafka['user_id']
     assert data_db.resume == data_kafka['resume'] == data_redis == resume # Проверка данных у резюме
 
-async def test_requirements_data(requirements: str, data_response: dict, db_session:  AsyncSession, redis_session: Redis):
+async def comparison_requirements_data(requirements: str, data_response: dict, db_session:  AsyncSession, redis_session: Redis):
     # данные с БД
     result_db = await db_session.execute(select(Requirements).where(Requirements.requirements_id == data_response['requirements_id']))
     data_db = result_db.scalar_one_or_none()
@@ -114,7 +114,7 @@ class TestCreateRequirementsText:
             assert response.status_code == 200
             data_response = response.json()# данные ответа сервера
 
-            await test_requirements_data(requirements_content, data_response, db_session, redis_session)
+            await comparison_requirements_data(requirements_content, data_response, db_session, redis_session)
 
     async def test_code_413(self, db_session, clearing_kafka, redis_session, create_user):
         # подписка на топик
@@ -188,7 +188,7 @@ class TestCreateRequirementsFile:
                 if status_code == 200:
                     assert response.status_code == status_code
                     data_response = response.json()  # Данные ответа сервера
-                    await test_requirements_data(requirements_content, data_response, db_session, redis_session)
+                    await comparison_requirements_data(requirements_content, data_response, db_session, redis_session)
                 elif status_code == 400:
                     assert response.status_code == status_code
         finally:
@@ -252,7 +252,6 @@ class TestCreateRequirementsFile:
                 if os.path.exists(test_file_path):
                     os.remove(test_file_path)
 
-
 class TestCreateResumeText:
     @pytest.mark.asyncio
     async def test_code_200(self, db_session, clearing_kafka, redis_session, create_user):
@@ -274,7 +273,7 @@ class TestCreateResumeText:
             assert response.status_code == 200
             data_response = response.json()# данные ответа сервера
 
-            await test_resume_data(resume_content, data_response, db_session, redis_session)
+            await comparison_resume_data(resume_content, data_response, db_session, redis_session)
 
     async def test_code_413(self, create_user):
         async with AsyncClient(
@@ -295,65 +294,65 @@ class TestCreateResumeText:
                     break
 
 class TestCreateResumeFile:
-    # @pytest.mark.asyncio
-    # @pytest.mark.parametrize(
-    #     'extension, status_code',
-    #     [
-    #         ('.txt', 200),
-    #         ('.pdf', 200),
-    #         ('.docx', 200),
-    #         ('.doc', 400),  # неподдерживаемый формат
-    #     ]
-    # )
-    # async def test_send_file(self,extension, status_code, db_session, clearing_kafka, redis_session, create_user):
-    #     consumer.subscribe([KAFKA_TOPIC_PRODUCER_FOR_UPLOADING_DATA])
-    #
-    #     # Создаем временный файл для теста
-    #     resume_content = "Это тестовое резюме в файле."
-    #     test_file_path = f"{PATH_TO_TEST_DIRECTORY}/test_resume" + extension
-    #     if extension == '.txt':
-    #         with open(test_file_path, "w", encoding="utf-8") as f:
-    #             f.write(resume_content)
-    #     elif extension == '.pdf':
-    #         # Регистрируем Unicode-шрифт (нужен файл шрифта)
-    #         pdfmetrics.registerFont(TTFont('ArialUnicode', 'arial.ttf'))  # Или другой Unicode-шрифт
-    #         c = canvas.Canvas(test_file_path, pagesize=letter)
-    #         c.setFont("ArialUnicode", 12)  # Используем Unicode-шрифт
-    #         c.drawString(100, 750, resume_content)
-    #         c.save()
-    #     elif extension == '.docx':
-    #         doc = Document() # Создаем новый документ
-    #         doc.add_paragraph(resume_content)# Добавляем абзац
-    #         doc.save(test_file_path)
-    #     elif extension == '.doc':
-    #         doc = Document()# Создаем новый документ
-    #         doc.add_heading('Мой документ Word', level=1)
-    #         doc.add_paragraph(resume_content)
-    #         doc.save(test_file_path)
-    #
-    #     try:
-    #         async with AsyncClient(
-    #             transport=ASGITransport(app),
-    #             base_url="http://test",
-    #         ) as ac:
-    #             # Открываем файл и отправляем его как часть multipart-формы
-    #             with open(test_file_path, "rb") as f:
-    #                 response = await ac.post(
-    #                     "/create_resume/file",
-    #                     files={"file": (test_file_path, f, "text/plain")},
-    #                     headers={"Authorization": f"Bearer {create_user['access_token']}"}
-    #                 )
-    #             if status_code == 200:
-    #                 assert response.status_code == status_code
-    #                 data_response = response.json()# Данные ответа сервера
-    #                 await test_resume_data(resume_content, data_response, db_session, redis_session)
-    #             elif status_code == 400:
-    #                 assert response.status_code == status_code
-    #     finally:
-    #         # Удаляем временный файл
-    #         if os.path.exists(test_file_path):
-    #             os.remove(test_file_path)
-    #
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize(
+        'extension, status_code',
+        [
+            ('.txt', 200),
+            ('.pdf', 200),
+            ('.docx', 200),
+            ('.doc', 400),  # неподдерживаемый формат
+        ]
+    )
+    async def test_send_file(self, extension, status_code, db_session, clearing_kafka, redis_session, create_user):
+        consumer.subscribe([KAFKA_TOPIC_PRODUCER_FOR_UPLOADING_DATA])
+
+        # Создаем временный файл для теста
+        resume_content = "Это тестовое резюме в файле."
+        test_file_path = f"{PATH_TO_TEST_DIRECTORY}/test_resume" + extension
+        if extension == '.txt':
+            with open(test_file_path, "w", encoding="utf-8") as f:
+                f.write(resume_content)
+        elif extension == '.pdf':
+            # Регистрируем Unicode-шрифт (нужен файл шрифта)
+            pdfmetrics.registerFont(TTFont('ArialUnicode', 'arial.ttf'))  # Или другой Unicode-шрифт
+            c = canvas.Canvas(test_file_path, pagesize=letter)
+            c.setFont("ArialUnicode", 12)  # Используем Unicode-шрифт
+            c.drawString(100, 750, resume_content)
+            c.save()
+        elif extension == '.docx':
+            doc = Document() # Создаем новый документ
+            doc.add_paragraph(resume_content)# Добавляем абзац
+            doc.save(test_file_path)
+        elif extension == '.doc':
+            doc = Document()# Создаем новый документ
+            doc.add_heading('Мой документ Word', level=1)
+            doc.add_paragraph(resume_content)
+            doc.save(test_file_path)
+
+        try:
+            async with AsyncClient(
+                transport=ASGITransport(app),
+                base_url="http://test",
+            ) as ac:
+                # Открываем файл и отправляем его как часть multipart-формы
+                with open(test_file_path, "rb") as f:
+                    response = await ac.post(
+                        "/create_resume/file",
+                        files={"file": (test_file_path, f, "text/plain")},
+                        headers={"Authorization": f"Bearer {create_user['access_token']}"}
+                    )
+                if status_code == 200:
+                    assert response.status_code == status_code
+                    data_response = response.json()# Данные ответа сервера
+                    await comparison_resume_data(resume_content, data_response, db_session, redis_session)
+                elif status_code == 400:
+                    assert response.status_code == status_code
+        finally:
+            # Удаляем временный файл
+            if os.path.exists(test_file_path):
+                os.remove(test_file_path)
+
 
     @pytest.mark.asyncio
     async def test_code_400(self, create_user):
@@ -407,3 +406,115 @@ class TestCreateResumeFile:
             # Удаляем временный файл
             if os.path.exists(test_file_path):
                 os.remove(test_file_path)
+
+class TestStartProcessing:
+    @pytest.mark.asyncio
+    async def test_code_200(self, db_session, clearing_kafka, redis_session, create_requirements_and_resume):
+        consumer.subscribe([KAFKA_TOPIC_PRODUCER_FOR_AI_HANDLER]) # подписка на топик
+        async with AsyncClient(
+                transport=ASGITransport(app),
+                base_url="http://test",
+        ) as ac:
+            response = await ac.post(
+                "/start_processing",
+                json={
+                    "requirements_id": create_requirements_and_resume['requirements_id'],
+                    "resume_id": create_requirements_and_resume['resume_id']
+                },
+                headers={"Authorization": f"Bearer {create_requirements_and_resume['access_token']}"}
+            )
+            assert response.status_code == 200
+            # ответ от сервера проверять не надо, там всегда будут одни и те же данные, если получаем код 200
+
+            # Данные с Kafka
+            data_kafka = None
+            for i in range(40):
+                try:
+                    msg = consumer.poll(timeout=1.0)
+                    if msg is None:
+                        if i == 39:
+                            raise Exception("Не удалось получить сообщение от Kafka!")
+                        continue
+                    if msg.key().decode('utf-8') == 'new_request':
+                        data_kafka = json.loads(msg.value().decode('utf-8'))
+                    else:
+                        raise Exception(f"Ожидался ключ 'resume', получен {msg.key().decode('utf-8')}")
+                    break
+                except KafkaError as e:
+                    raise Exception(f"Ошибка Kafka: {e}")
+
+            assert data_kafka['user_id'] == create_requirements_and_resume['user_id']
+            assert data_kafka['requirements'] == create_requirements_and_resume['requirements']
+            assert data_kafka['resume'] == create_requirements_and_resume['resume']
+
+    @pytest.mark.asyncio
+    async def test_code_403(self, db_session, create_requirements_and_resume, create_user):  # при попытке получить данные другого пользователя
+        # Создаем второго пользователя
+        another_user = User(user_id=create_user['user_id'] + 1)
+        db_session.add(another_user)
+        await db_session.commit()
+        await db_session.refresh(another_user)
+
+        # Создаем требования и резюме для второго пользователя
+        another_requirements = Requirements(
+            user_id=another_user.user_id,
+            requirements='Требования другого пользователя'
+        )
+        another_resume = Resume(
+            user_id=another_user.user_id,
+            resume='Резюме другого пользователя'
+        )
+        db_session.add(another_requirements)
+        db_session.add(another_resume)
+        await db_session.commit()
+        await db_session.refresh(another_requirements)
+        await db_session.refresh(another_resume)
+
+        async with AsyncClient(
+                transport=ASGITransport(app),
+                base_url="http://test",
+        ) as ac:
+            # 1. Пытаемся использовать требования другого пользователя
+            response = await ac.post(
+                "/start_processing",
+                json={
+                    'requirements_id': another_requirements.requirements_id,
+                    'resume_id': create_requirements_and_resume['resume_id'],
+                },
+                headers={"Authorization": f"Bearer {create_requirements_and_resume['access_token']}"}
+            )
+            assert response.status_code == 403
+
+            # 2. Пытаемся использовать резюме другого пользователя
+            response = await ac.post(
+                "/start_processing",
+                json={
+                    'requirements_id': create_requirements_and_resume['requirements_id'],
+                    'resume_id': another_resume.resume_id,
+                },
+                headers={"Authorization": f"Bearer {create_requirements_and_resume['access_token']}"}
+            )
+            assert response.status_code == 403
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize(
+        'data_request',
+        [
+            ({"requirements_id": 1, "resume_id": 423432}),
+            ({"requirements_id": 543534, "resume_id": 1})
+        ]
+    )
+    async def test_code_404(self, data_request, create_requirements_and_resume): # при вводе несуществующего ID
+        async with AsyncClient(
+                transport=ASGITransport(app),
+                base_url="http://test",
+        ) as ac:
+            response = await ac.post(
+                "/start_processing",
+                json=data_request,
+                headers={"Authorization": f"Bearer {create_requirements_and_resume['access_token']}"}
+            )
+            assert response.status_code == 404
+
+
+

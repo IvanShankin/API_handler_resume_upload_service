@@ -31,7 +31,7 @@ class NoRights(HTTPException):
 
 class NotFoundData(HTTPException):
     def __init__(self):
-        super().__init__(status_code=status.HTTP_401_UNAUTHORIZED, detail="Запрашиваемые данные не найдены")
+        super().__init__(status_code=status.HTTP_404_NOT_FOUND, detail="Запрашиваемые данные не найдены")
 
 class UserAlreadyRegistered(HTTPException):
     def __init__(self):
