@@ -769,3 +769,8 @@ msg: {"user_id": 1, "requirements": "\u0422\u0440\u0435\u0431\u043e\u0432\u0430\
 2025-07-27 19:05:57,680 - root - INFO - Database tables created successfully
 2025-07-27 19:05:58,331 - httpx - INFO - HTTP Request: POST http://test/start_processing "HTTP/1.1 403 Forbidden"
 2025-07-27 19:05:58,423 - httpx - INFO - HTTP Request: POST http://test/start_processing "HTTP/1.1 403 Forbidden"
+2025-07-27 20:47:39,645 - root - INFO - Database api_handler_resume_upload_service already exists
+2025-07-27 20:47:39,724 - root - INFO - Creating database tables...
+2025-07-27 20:47:39,733 - root - INFO - Database tables created successfully
+2025-07-27 20:47:42,669 - srt.config - INFO - ѕользователь с id = 1 не будет добавлен, т.к. уже имеетс€
+2025-07-27 20:47:42,748 - srt.config - INFO - ѕользователь с id = 2 не будет добавлен, т.к. уже имеетс€

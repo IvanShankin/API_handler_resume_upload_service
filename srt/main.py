@@ -19,8 +19,14 @@ app.include_router(main_router)
 
 if __name__ == '__main__':
     # Запускаем consumer в отдельном потоке
-    consumer_thread = threading.Thread(target=consumer_auth.consumer_run)
-    consumer_thread.daemon = True  # Демонизируем поток, чтобы он завершился при завершении основного потока
+    def run_consumer():
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        loop.run_until_complete(consumer_auth.consumer_run())
+
+
+    consumer_thread = threading.Thread(target=run_consumer)
+    consumer_thread.daemon = True # Демонизируем поток, чтобы он завершился при завершении основного потока
     consumer_thread.start()
 
     asyncio.run(create_data_base())

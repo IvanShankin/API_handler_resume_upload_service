@@ -107,29 +107,35 @@ class ConsumerKafka:
     async def worker_topic(self, data:dict):
         pass
 
+    async def _run_consumer(self):
+        self.consumer.subscribe([self.topic])
+        msg_count = 0
+
+        while self.running:
+            msg = self.consumer.poll(timeout=1.0)
+            if msg is None:
+                continue
+
+            if msg.error():
+                if msg.error().code() == KafkaError._PARTITION_EOF:
+                    sys.stderr.write('%% %s [%d] reached end at offset %d\n' %
+                                   (msg.topic(), msg.partition(), msg.offset()))
+                elif msg.error():
+                    raise KafkaException(msg.error())
+            else:
+                data = json.loads(msg.value().decode('utf-8'))
+                await self.worker_topic(data)  # Используем await вместо asyncio.run()
+
+                msg_count += 1
+                if msg_count % MIN_COMMIT_COUNT_KAFKA == 0:
+                    self.consumer.commit(asynchronous=True)
+
     def consumer_run(self):
+        """Создаёт цикл и запускает асинхронный код для чтения сообщений"""
         try:
-            self.consumer.subscribe([self.topic])
-            msg_count = 0
-
-            while self.running:
-                msg = self.consumer.poll(timeout=1.0)
-                if msg is None: continue
-
-                if msg.error():
-                    if msg.error().code() == KafkaError._PARTITION_EOF:
-                        sys.stderr.write('%% %s [%d] reached end at offset %d\n' %
-                                         (msg.topic(), msg.partition(), msg.offset()))
-                    elif msg.error():
-                        raise KafkaException(msg.error())
-                else:
-                    data = json.loads(msg.value().decode('utf-8'))
-
-                    asyncio.run(self.worker_topic(data))
-
-                    msg_count += 1
-                    if msg_count % MIN_COMMIT_COUNT_KAFKA == 0:
-                        self.consumer.commit(asynchronous=True)
+            loop = asyncio.new_event_loop() # Создаём новый цикл
+            asyncio.set_event_loop(loop)  # Назначаем его для текущего потока
+            loop.run_until_complete(self._run_consumer()) # Запускаем асинхронный код
         finally:
             self.consumer.close()
 

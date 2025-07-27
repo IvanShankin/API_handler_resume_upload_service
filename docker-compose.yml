@@ -2,7 +2,7 @@ services:
   app:
     build: .
     ports:
-      - "8000:8000"
+      - "8001:8001"
     env_file: # Добавьте эту секцию
       - .env
     environment:
@@ -18,6 +18,7 @@ services:
       - KAFKA_BOOTSTRAP_SERVERS=kafka:9092
       - KAFKA_TOPIC_CONSUMER=${KAFKA_TOPIC_CONSUMER}
       - KAFKA_TOPIC_PRODUCER_FOR_UPLOADING_DATA=${KAFKA_TOPIC_PRODUCER_FOR_UPLOADING_DATA}
+      - KAFKA_TOPIC_PRODUCER_FOR_AI_HANDLER=${KAFKA_TOPIC_PRODUCER_FOR_AI_HANDLER}
 
       # данные для подключения к БД
       - DB_HOST=db
