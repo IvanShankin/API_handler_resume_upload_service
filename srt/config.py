@@ -11,6 +11,11 @@ ALLOWED_EXTENSIONS = {'.txt', '.docx', '.pdf'} # поддерживаемые ф
 MAX_CHAR_REQUIREMENTS = 5000
 MAX_CHAR_RESUME = 15000
 
+# данные для ключей Kafka
+KEY_NEW_REQUEST = 'new_request'
+KEY_NEW_RESUME = 'new_resume'
+KEY_NEW_REQUIREMENTS = 'new_requirements'
+
 LOG_DIR = Path("../logs")
 LOG_DIR.mkdir(exist_ok=True)
 

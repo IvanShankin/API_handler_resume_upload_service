@@ -27,7 +27,7 @@ from srt.schemas.response import UserOut, RequirementsOut, ResumeOut, StartProce
 from srt.data_base.models import User, Requirements, Resume
 from srt.data_base.data_base import get_db
 from srt.config import LOGIN_BLOCK_TIME, STORAGE_TIME_REQUIREMENTS, STORAGE_TIME_RESUME, ALLOWED_EXTENSIONS, \
-    MAX_CHAR_RESUME, MAX_CHAR_REQUIREMENTS
+    MAX_CHAR_RESUME, MAX_CHAR_REQUIREMENTS, KEY_NEW_REQUEST, KEY_NEW_RESUME, KEY_NEW_REQUIREMENTS
 from srt.config import logger
 from srt.exception import (NotFoundData, InvalidCredentialsException, InvalidTokenException, NoRights,
                            ToManyAttemptsEnter, InvalidFileFormat, CorruptedFile, TooManyCharacters, EmptyFileException)
@@ -83,7 +83,7 @@ async def add_requirements(
 
     producer.sent_message(
         topic=KAFKA_TOPIC_PRODUCER_FOR_UPLOADING_DATA,
-        key=f'requirements',
+        key=KEY_NEW_REQUIREMENTS,
         value={
             'requirements_id': new_requirements.requirements_id,
             'user_id': user_id,
@@ -111,7 +111,7 @@ async def add_resume(
 
     producer.sent_message(
         topic=KAFKA_TOPIC_PRODUCER_FOR_UPLOADING_DATA,
-        key=f'resume',
+        key=KEY_NEW_RESUME,
         value={
             'resume_id': new_resume.resume_id,
             'user_id': user_id,
@@ -225,7 +225,7 @@ async def start_processing(
 
     producer.sent_message(
         topic=KAFKA_TOPIC_PRODUCER_FOR_AI_HANDLER,
-        key='new_request',
+        key=KEY_NEW_REQUEST,
         value={
             'user_id': current_user.user_id,
             'requirements': requirements,
@@ -234,60 +234,3 @@ async def start_processing(
     )
 
     return StartProcessingOut(status='Processing started')
-
-
-
-
-
-
-
-
-
-
-
-# ЭТО ТОЛЬКО ДЛЯ ОТЛАДКИ
-# ЭТО ТОЛЬКО ДЛЯ ОТЛАДКИ
-# ЭТО ТОЛЬКО ДЛЯ ОТЛАДКИ
-
-from datetime import datetime, timedelta, UTC
-from jose import JWTError, jwt
-@router.post('/auth/login', tags=["Authentication"],)
-async def login(
-        request: Request,
-        username: str = Form(...),  # Для совместимости со Swagger UI
-        password: str = Form(...),  # Для совместимости со Swagger UI
-        db: AsyncSession = Depends(get_db)
-):
-    SECRET_KEY = os.getenv('SECRET_KEY')
-    ACCESS_TOKEN_EXPIRE_MINUTES = float(os.getenv('ACCESS_TOKEN_EXPIRE_MINUTES'))
-    ALGORITHM = os.getenv('ALGORITHM')
-
-    user_db = await db.execute(select(User).where(User.user_id == int(username)))
-    user = user_db.scalar()
-
-    # если нет такого пользователя или пароль не совпадает
-    if not user:
-        raise InvalidCredentialsException()
-
-    to_encode = {"sub": str(user.user_id)}.copy()
-
-    # Установка времени истечения токена
-    expire = datetime.now(UTC) + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-
-    # Добавляем поле с временем истечения
-    to_encode.update({"exp": expire})
-
-    # Кодируем данные в JWT токен
-    access_token = jwt.encode(
-        to_encode,  # Данные для кодирования
-        SECRET_KEY,  # Секретный ключ из конфига
-        algorithm=ALGORITHM  # Алгоритм шифрования
-    )
-
-
-    return {'access_token': access_token, 'refresh_token': 'fdsvmxlkgredgvvjksdfjvbnsdcsafwef', 'token_type': "bearer"}
-# В SWAGGER UI НЕОБХОДИМО НАПИСАТЬ 1 И 1
-
-# ЭТО ТОЛЬКО ДЛЯ ОТЛАДКИ
-# ЭТО ТОЛЬКО ДЛЯ ОТЛАДКИ
-# ЭТО ТОЛЬКО ДЛЯ ОТЛАДКИ

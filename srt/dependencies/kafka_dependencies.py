@@ -104,7 +104,7 @@ class ConsumerKafka:
 
     # ЭТУ ФУНКЦИЮ ПЕРЕОБРЕДЕЛЯЕМ В НАСТЛЕДУЕМОМ КЛАССЕ,
     # ОНА БУДЕТ ВЫПОЛНЯТЬ ДЕЙСТВИЯ ПРИ ПОЛУЧЕНИИ СООБЩЕНИЯ
-    async def worker_topic(self, data:dict):
+    async def worker_topic(self, data:dict, key: str):
         pass
 
     async def _run_consumer(self):
@@ -124,7 +124,9 @@ class ConsumerKafka:
                     raise KafkaException(msg.error())
             else:
                 data = json.loads(msg.value().decode('utf-8'))
-                await self.worker_topic(data)  # Используем await вместо asyncio.run()
+                key = msg.key().decode('utf-8')
+
+                await self.worker_topic(data, key)
 
                 msg_count += 1
                 if msg_count % MIN_COMMIT_COUNT_KAFKA == 0:
@@ -139,23 +141,24 @@ class ConsumerKafka:
         finally:
             self.consumer.close()
 
-# consumer для топика авторизации
+# consumer для топика, который принимает данные о новом пользователе
 class ConsumerKafkaAuth(ConsumerKafka):
     def __init__(self, topic: str):
         super().__init__(topic)
 
-    async def worker_topic(self, data: dict):
-        db_gen = get_db()
-        db = await db_gen.__anext__()  # Извлекаем AsyncSession
-        result_db = await db.execute(select(User).where(User.user_id == data['user_id']))
+    async def worker_topic(self, data: dict, key: str):
+        if key == 'new_user': # при поступлении нового пользователя
+            db_gen = get_db()
+            db = await db_gen.__anext__()  # Извлекаем AsyncSession
+            result_db = await db.execute(select(User).where(User.user_id == data['user_id']))
 
-        if not result_db.scalar_one_or_none():  # если пользователь с таким id нет
-            new_user = User(user_id=int(data['user_id']))
-            db.add(new_user)
-            await db.commit()
-            logger.info(f'Добавлен в БД пользователь с id = {data['user_id']}')
-        else:
-            logger.info(f'Пользователь с id = {data['user_id']} не будет добавлен, т.к. уже имеется')
+            if not result_db.scalar_one_or_none():  # если пользователь с таким id нет
+                new_user = User(user_id=int(data['user_id']))
+                db.add(new_user)
+                await db.commit()
+                logger.info(f'Добавлен в БД пользователь с id = {data['user_id']}')
+            else:
+                logger.info(f'Пользователь с id = {data['user_id']} не будет добавлен, т.к. уже имеется')
 
 producer = ProducerKafka()
 consumer_auth = ConsumerKafkaAuth(KAFKA_TOPIC_CONSUMER)

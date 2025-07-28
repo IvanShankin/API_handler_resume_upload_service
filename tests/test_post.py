@@ -17,7 +17,7 @@ from docx import Document
 
 from srt.data_base.models import User, Requirements, Resume
 from srt.main import app
-from srt.config import MAX_CHAR_REQUIREMENTS, MAX_CHAR_RESUME
+from srt.config import MAX_CHAR_REQUIREMENTS, MAX_CHAR_RESUME, KEY_NEW_REQUEST, KEY_NEW_RESUME, KEY_NEW_REQUIREMENTS
 from tests.conftest import consumer
 from tests.conftest import PATH_TO_TEST_DIRECTORY
 
@@ -59,10 +59,10 @@ async def comparison_resume_data(resume: str, data_response: dict, db_session:  
                 if i == 39:
                     raise Exception("Не удалось получить сообщение от Kafka!")
                 continue
-            if msg.key().decode('utf-8') == 'resume':
+            if msg.key().decode('utf-8') == KEY_NEW_RESUME:
                 data_kafka = json.loads(msg.value().decode('utf-8'))
             else:
-                raise Exception(f"Ожидался ключ 'resume', получен {msg.key().decode('utf-8')}")
+                raise Exception(f"Ожидался ключ {KEY_NEW_RESUME}, получен {msg.key().decode('utf-8')}")
             break
         except KafkaError as e:
             raise Exception(f"Ошибка Kafka: {e}")
@@ -92,10 +92,10 @@ async def comparison_requirements_data(requirements: str, data_response: dict, d
                 else:
                     continue
 
-            if msg.key().decode('utf-8') == 'requirements':
+            if msg.key().decode('utf-8') == KEY_NEW_REQUIREMENTS:
                 data_kafka = json.loads(msg.value().decode('utf-8'))
             else:
-                raise Exception(f"Приняли ключ {msg.key().decode('utf-8')}, а ожидается 'requirements'")
+                raise Exception(f"Ожидался ключ '{KEY_NEW_REQUIREMENTS}', получен {msg.key().decode('utf-8')}")
             break
         except KafkaError as e:
             raise Exception(f"Ошибка Kafka: {e}")
@@ -445,10 +445,10 @@ class TestStartProcessing:
                         if i == 39:
                             raise Exception("Не удалось получить сообщение от Kafka!")
                         continue
-                    if msg.key().decode('utf-8') == 'new_request':
+                    if msg.key().decode('utf-8') == KEY_NEW_REQUEST:
                         data_kafka = json.loads(msg.value().decode('utf-8'))
                     else:
-                        raise Exception(f"Ожидался ключ 'resume', получен {msg.key().decode('utf-8')}")
+                        raise Exception(f"Ожидался ключ '{KEY_NEW_REQUEST}', получен {msg.key().decode('utf-8')}")
                     break
                 except KafkaError as e:
                     raise Exception(f"Ошибка Kafka: {e}")
