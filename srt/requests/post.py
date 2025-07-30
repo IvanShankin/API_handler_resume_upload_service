@@ -228,6 +228,8 @@ async def start_processing(
         key=KEY_NEW_REQUEST,
         value={
             'user_id': current_user.user_id,
+            'resume_id': data.resume_id,
+            'requirements_id': data.requirements_id,
             'requirements': requirements,
             'resume': resume
         }

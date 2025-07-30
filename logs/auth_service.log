@@ -873,3 +873,9 @@ msg: {"resume_id": 107, "user_id": 1, "resume": "\u042d\u0442\u043e \u0442\u0435
 2025-07-29 00:19:41,810 - httpx - INFO - HTTP Request: POST http://test/start_processing "HTTP/1.1 403 Forbidden"
 2025-07-29 00:19:42,135 - httpx - INFO - HTTP Request: POST http://test/start_processing "HTTP/1.1 404 Not Found"
 2025-07-29 00:19:42,514 - httpx - INFO - HTTP Request: POST http://test/start_processing "HTTP/1.1 404 Not Found"
+2025-07-30 16:04:33,500 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-07-30 16:04:33,594 - root - INFO - Creating database tables...
+2025-07-30 16:04:33,606 - root - INFO - Database tables created successfully
+2025-07-30 16:04:42,842 - srt.config - INFO - Kafka new message: err: None
+msg: {"requirements_id": 193, "user_id": 1, "requirements": "\u044d\u0442\u043e \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-07-30 16:04:43,847 - httpx - INFO - HTTP Request: POST http://test/create_requirements/text "HTTP/1.1 200 OK"

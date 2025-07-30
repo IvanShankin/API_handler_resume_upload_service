@@ -9,7 +9,7 @@ from confluent_kafka.admin import AdminClient, NewTopic
 from confluent_kafka import Consumer, KafkaException, KafkaError
 import sys
 
-from srt.config import logger, MIN_COMMIT_COUNT_KAFKA
+from srt.config import logger, MIN_COMMIT_COUNT_KAFKA, KEY_NEW_USER
 from srt.data_base.models import User
 from srt.data_base.data_base import get_db
 
@@ -70,7 +70,7 @@ class ProducerKafka:
             }
         self.producer = Producer(self.conf)
 
-    def sent_message(self, topic: str, key: str, value: str):
+    def sent_message(self, topic: str, key: str, value: dict):
         try:
             self.producer.produce(topic=topic, key=key, value=json.dumps(value).encode('utf-8'), callback=self._acked)
             self.producer.flush()
@@ -147,7 +147,7 @@ class ConsumerKafkaAuth(ConsumerKafka):
         super().__init__(topic)
 
     async def worker_topic(self, data: dict, key: str):
-        if key == 'new_user': # при поступлении нового пользователя
+        if key == KEY_NEW_USER: # при поступлении нового пользователя
             db_gen = get_db()
             db = await db_gen.__anext__()  # Извлекаем AsyncSession
             result_db = await db.execute(select(User).where(User.user_id == data['user_id']))
