@@ -27,10 +27,12 @@ from srt.schemas.response import UserOut, RequirementsOut, ResumeOut, StartProce
 from srt.data_base.models import User, Requirements, Resume
 from srt.data_base.data_base import get_db
 from srt.config import LOGIN_BLOCK_TIME, STORAGE_TIME_REQUIREMENTS, STORAGE_TIME_RESUME, ALLOWED_EXTENSIONS, \
-    MAX_CHAR_RESUME, MAX_CHAR_REQUIREMENTS, KEY_NEW_REQUEST, KEY_NEW_RESUME, KEY_NEW_REQUIREMENTS
+    MAX_CHAR_RESUME, MAX_CHAR_REQUIREMENTS, KEY_NEW_REQUEST, KEY_NEW_RESUME, KEY_NEW_REQUIREMENTS, \
+    RATE_LIMIT_START_PROCESSING_IN_MINUTES, START_PROCESSING_BLOCK_TIME
 from srt.config import logger
 from srt.exception import (NotFoundData, InvalidCredentialsException, InvalidTokenException, NoRights,
-                           ToManyAttemptsEnter, InvalidFileFormat, CorruptedFile, TooManyCharacters, EmptyFileException)
+                           ToManyAttemptsEnter, InvalidFileFormat, CorruptedFile, TooManyCharacters, EmptyFileException,
+                           ToManyRequest)
 
 
 load_dotenv()
@@ -59,9 +61,7 @@ async def extract_text_from_file(file: UploadFile, extensions: str, user_id: int
             return text
         else:
             return (await file.read()).decode('utf-8')
-    except Exception as e:
-        print("\n\n\n\n\nОшибка\n\n\n\n")
-        print(f"Error extracting text: {str(e)}")  # Конкретная ошибка
+    except Exception:
         raise CorruptedFile(file.filename)
 
 async def add_requirements(
@@ -202,12 +202,33 @@ async def start_processing(
     redis_client: Redis = Depends(get_redis),
     db: AsyncSession = Depends(get_db)
 ):
+    if await redis_client.get(f'start_processing_bloc:{current_user.user_id}'):
+        raise ToManyRequest(int(START_PROCESSING_BLOCK_TIME))
+
+    # получаем текущее количество запросов
+    quantity_requests = await redis_client.get(f'start_processing:{current_user.user_id}')
+    quantity_requests = int(quantity_requests) if quantity_requests else 0
+
+    # если лимит превышен
+    if quantity_requests >= RATE_LIMIT_START_PROCESSING_IN_MINUTES:
+        await redis_client.setex(
+            f'start_processing_bloc:{current_user.user_id}',
+            START_PROCESSING_BLOCK_TIME,
+            "blocked" # значение может быть любое
+        )
+        raise ToManyRequest(int(START_PROCESSING_BLOCK_TIME))
+
+    # инкрементируем счётчик
+    if quantity_requests == 0:
+        await redis_client.setex(f'start_processing:{current_user.user_id}',60,  1)
+    else:
+        await redis_client.incr(f'start_processing:{current_user.user_id}')
+
     requirements = await redis_client.get(f'requirements:{data.requirements_id}')
     if not requirements:
         requirements_from_db = await db.execute(select(Requirements).where(Requirements.requirements_id == data.requirements_id))
         requirements = requirements_from_db.scalar_one_or_none()
         if not requirements:
-            print('тут')
             raise NotFoundData() #  ошибка 404
         if requirements.user_id != current_user.user_id:
             raise NoRights() # ошибка 403

@@ -1,10 +1,12 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, Field
+from srt.config import MAX_CHAR_REQUIREMENTS, MAX_CHAR_RESUME
+
 
 class RequirementsRequest(BaseModel):
-    requirements: str
+    requirements: str = Field(..., max_length=MAX_CHAR_REQUIREMENTS)
 
 class ResumeRequest(BaseModel):
-    resume: str
+    resume: str = Field(..., max_length=MAX_CHAR_RESUME)
 
 class StartProcessingRequest(BaseModel):
     requirements_id: int
