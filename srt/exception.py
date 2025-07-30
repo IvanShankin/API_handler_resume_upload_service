@@ -1,9 +1,11 @@
 from fastapi import HTTPException, status
-from srt.config import LOGIN_BLOCK_TIME
 
 class InvalidFileFormat(HTTPException):
     def __init__(self, allowed_extensions):
-        super().__init__(status_code=status.HTTP_400_BAD_REQUEST, detail=f'Неподдерживаемый формат файла. Разрешены: {', '.join(allowed_extensions)}')
+        super().__init__(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f'Неподдерживаемый формат файла. Разрешены: {', '.join(allowed_extensions)}'
+        )
 
 class CorruptedFile(HTTPException):
     def __init__(self, file_name: str):
@@ -13,17 +15,9 @@ class EmptyFileException(HTTPException):
     def __init__(self, file_name: str):
         super().__init__(status_code=status.HTTP_400_BAD_REQUEST, detail=f'Файл {file_name} пуст!')
 
-class InvalidTokenException(HTTPException):
-    def __init__(self):
-        super().__init__(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token")
-
-class TokenExpiredException(HTTPException):
-    def __init__(self):
-        super().__init__(status_code=status.HTTP_401_UNAUTHORIZED, detail="Token has expired")
-
 class InvalidCredentialsException(HTTPException):
     def __init__(self):
-        super().__init__(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid username or password")
+        super().__init__(status_code=status.HTTP_401_UNAUTHORIZED, detail="Неверный логин или пароль!")
 
 class NoRights(HTTPException):
     def __init__(self):
@@ -33,17 +27,17 @@ class NotFoundData(HTTPException):
     def __init__(self):
         super().__init__(status_code=status.HTTP_404_NOT_FOUND, detail="Запрашиваемые данные не найдены")
 
-class UserAlreadyRegistered(HTTPException):
-    def __init__(self):
-        super().__init__(status_code=status.HTTP_409_CONFLICT,detail="username already registered")
-
 class TooManyCharacters(HTTPException):
     def __init__(self, max_length_char: int):
-        super().__init__(status_code=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,detail="Слишком большое количество символов. максимум: {}")
+        super().__init__(
+            status_code=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
+            detail=f"Слишком большое количество символов. Максимум: {max_length_char}"
+        )
 
-class ToManyAttemptsEnter(HTTPException):
-    def __init__(self):
-        super().__init__(status_code=status.HTTP_429_TOO_MANY_REQUESTS,detail=f"Too many username attempts. Please try again in"
-                                                                      f" {LOGIN_BLOCK_TIME.seconds//60} minutes")
-
+class ToManyRequest(HTTPException):
+    def __init__(self, rate_limit_in_seconds: int):
+        super().__init__(
+            status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+            detail=f"Слишком большое количество запросов. Повторите попытку через {rate_limit_in_seconds} секунд"
+        )
 

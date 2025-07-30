@@ -454,6 +454,8 @@ class TestStartProcessing:
                     raise Exception(f"Ошибка Kafka: {e}")
 
             assert data_kafka['user_id'] == create_requirements_and_resume['user_id']
+            assert data_kafka['requirements_id'] == create_requirements_and_resume['requirements_id']
+            assert data_kafka['resume_id'] == create_requirements_and_resume['resume_id']
             assert data_kafka['requirements'] == create_requirements_and_resume['requirements']
             assert data_kafka['resume'] == create_requirements_and_resume['resume']
 
