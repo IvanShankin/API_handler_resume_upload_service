@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, HttpUrl
 from srt.config import MAX_CHAR_REQUIREMENTS, MAX_CHAR_RESUME
 
 
@@ -11,3 +11,4 @@ class ResumeRequest(BaseModel):
 class StartProcessingRequest(BaseModel):
     requirements_id: int
     resume_id: int
+    callback_url: HttpUrl

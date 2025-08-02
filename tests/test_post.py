@@ -425,11 +425,13 @@ class TestStartProcessing:
                 transport=ASGITransport(app),
                 base_url="http://test",
         ) as ac:
+            callback_url = 'http://test_url/'
             response = await ac.post(
                 "/start_processing",
                 json={
                     "requirements_id": create_requirements_and_resume['requirements_id'],
-                    "resume_id": create_requirements_and_resume['resume_id']
+                    "resume_id": create_requirements_and_resume['resume_id'],
+                    "callback_url": callback_url
                 },
                 headers={"Authorization": f"Bearer {create_requirements_and_resume['access_token']}"}
             )
@@ -456,6 +458,7 @@ class TestStartProcessing:
             assert data_kafka['user_id'] == create_requirements_and_resume['user_id']
             assert data_kafka['requirements_id'] == create_requirements_and_resume['requirements_id']
             assert data_kafka['resume_id'] == create_requirements_and_resume['resume_id']
+            assert data_kafka['callback_url'] == callback_url
             assert data_kafka['requirements'] == create_requirements_and_resume['requirements']
             assert data_kafka['resume'] == create_requirements_and_resume['resume']
 

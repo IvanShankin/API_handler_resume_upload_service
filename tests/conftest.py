@@ -2,8 +2,7 @@ import asyncio
 import os
 import shutil
 import time
-from datetime import datetime, timezone, timedelta, UTC
-from os import getenv
+from datetime import datetime, timedelta, UTC
 from pathlib import Path
 from dotenv import load_dotenv
 from jose import jwt

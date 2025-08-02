@@ -26,3 +26,7 @@ class Resume(Base):
     resume = Column(String(MAX_CHAR_RESUME), nullable=False)
 
     user = relationship("User", back_populates="resume")
+
+class Processing(Base):
+    __tablename__ = "processing"
+    processing_id = Column(Integer, primary_key=True)

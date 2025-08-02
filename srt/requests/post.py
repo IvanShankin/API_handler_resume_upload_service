@@ -1,37 +1,30 @@
-import json
 import os
 import pymupdf as fitz
-import subprocess
+
 
 from docx import Document
 from io import BytesIO
 from pathlib import Path
 from dotenv import load_dotenv
-from datetime import datetime, timezone
 
-from fastapi.security import OAuth2PasswordBearer
 from redis import Redis
-from sqlalchemy import select, func, cast, Boolean, delete
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from fastapi import APIRouter, Depends, status, Request, Form
+from fastapi import APIRouter, Depends
 from fastapi import UploadFile, File
-from fastapi.responses import JSONResponse
-from datetime import timedelta
 
-from sqlalchemy.util import counter
 
 from srt.access import get_current_user
 from srt.dependencies import producer, get_redis
 from srt.schemas.request import RequirementsRequest, ResumeRequest, StartProcessingRequest
 from srt.schemas.response import UserOut, RequirementsOut, ResumeOut, StartProcessingOut
-from srt.data_base.models import User, Requirements, Resume
+from srt.data_base.models import User, Requirements, Resume, Processing
 from srt.data_base.data_base import get_db
 from srt.config import STORAGE_TIME_REQUIREMENTS, STORAGE_TIME_RESUME, ALLOWED_EXTENSIONS, \
     MAX_CHAR_RESUME, MAX_CHAR_REQUIREMENTS, KEY_NEW_REQUEST, KEY_NEW_RESUME, KEY_NEW_REQUIREMENTS, \
     RATE_LIMIT_START_PROCESSING_IN_MINUTES, START_PROCESSING_BLOCK_TIME
-from srt.config import logger
-from srt.exception import (NotFoundData, InvalidCredentialsException, NoRights,InvalidFileFormat, CorruptedFile,
-                           TooManyCharacters, EmptyFileException, ToManyRequest)
+from srt.exception import (NotFoundData, NoRights,InvalidFileFormat, CorruptedFile,TooManyCharacters,
+                           EmptyFileException, ToManyRequest)
 
 
 load_dotenv()
@@ -243,10 +236,17 @@ async def start_processing(
             raise NoRights() # ошибка 403
         resume = resume.resume # получаем требования к резюме
 
+    new_processing = Processing()
+    db.add(new_processing)
+    await db.commit()
+    await db.refresh(new_processing)
+
     producer.sent_message(
         topic=KAFKA_TOPIC_PRODUCER_FOR_AI_HANDLER,
         key=KEY_NEW_REQUEST,
         value={
+            'callback_url': str(data.callback_url),
+            'processing_id': new_processing.processing_id,
             'user_id': current_user.user_id,
             'resume_id': data.resume_id,
             'requirements_id': data.requirements_id,
