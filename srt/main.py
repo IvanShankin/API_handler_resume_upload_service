@@ -6,7 +6,7 @@ import os
 from dotenv import load_dotenv
 from fastapi import FastAPI
 
-from srt.data_base.data_base import create_data_base
+from srt.database.database import create_database
 from srt.dependencies.kafka_dependencies import consumer_auth
 from requests import main_router
 
@@ -29,7 +29,7 @@ if __name__ == '__main__':
     consumer_thread.daemon = True # Демонизируем поток, чтобы он завершился при завершении основного потока
     consumer_thread.start()
 
-    asyncio.run(create_data_base())
+    asyncio.run(create_database())
     uvicorn.run(
         "main:app",
         host="0.0.0.0",

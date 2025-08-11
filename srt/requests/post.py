@@ -18,8 +18,8 @@ from srt.access import get_current_user
 from srt.dependencies import producer, get_redis
 from srt.schemas.request import RequirementsRequest, ResumeRequest, StartProcessingRequest
 from srt.schemas.response import UserOut, RequirementsOut, ResumeOut, StartProcessingOut
-from srt.data_base.models import User, Requirements, Resume, Processing
-from srt.data_base.data_base import get_db
+from srt.database.models import User, Requirements, Resume, Processing
+from srt.database.database import get_db
 from srt.config import STORAGE_TIME_REQUIREMENTS, STORAGE_TIME_RESUME, ALLOWED_EXTENSIONS, \
     MAX_CHAR_RESUME, MAX_CHAR_REQUIREMENTS, KEY_NEW_REQUEST, KEY_NEW_RESUME, KEY_NEW_REQUIREMENTS, \
     RATE_LIMIT_START_PROCESSING_IN_MINUTES, START_PROCESSING_BLOCK_TIME

@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 
-from srt.data_base.base import Base
+from srt.database.base import Base
 from srt.config import MAX_CHAR_REQUIREMENTS, MAX_CHAR_RESUME
 
 class User(Base):

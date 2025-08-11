@@ -10,8 +10,8 @@ from confluent_kafka import Consumer, KafkaException, KafkaError
 import sys
 
 from srt.config import logger, MIN_COMMIT_COUNT_KAFKA, KEY_NEW_USER
-from srt.data_base.models import User
-from srt.data_base.data_base import get_db
+from srt.database.models import User
+from srt.database.database import get_db
 
 load_dotenv()
 KAFKA_BOOTSTRAP_SERVERS = os.getenv('KAFKA_BOOTSTRAP_SERVERS')
@@ -79,7 +79,7 @@ class ProducerKafka:
             logger.error(f"Kafka error: {e}")
 
     def _acked(self, err, msg):
-        logger.info(f"Kafka new message: err: {err}\nmsg: {msg.value().decode('utf-8')}")
+        logger.info(f"New message sent: err: {err}\nmsg: {msg.value().decode('utf-8')}")
 
 
 
@@ -107,9 +107,6 @@ class ConsumerKafka:
     async def worker_topic(self, data:dict, key: str):
         pass
 
-    async def error_handler(self, e):
-        logger.error(f'Произошла ошибка при обработки сообщения c kafka: {str(e)}')
-
     async def _run_consumer(self):
         self.consumer.subscribe([self.topic])
         msg_count = 0
@@ -129,10 +126,7 @@ class ConsumerKafka:
                 data = json.loads(msg.value().decode('utf-8'))
                 key = msg.key().decode('utf-8')
 
-                try:
-                    await self.worker_topic(data, key)
-                except Exception as e:
-                    await self.error_handler(e)
+                await self.worker_topic(data, key)
 
                 msg_count += 1
                 if msg_count % MIN_COMMIT_COUNT_KAFKA == 0:

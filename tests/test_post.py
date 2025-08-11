@@ -15,7 +15,7 @@ from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfbase import pdfmetrics
 from docx import Document
 
-from srt.data_base.models import User, Requirements, Resume
+from srt.database.models import User, Requirements, Resume
 from srt.main import app
 from srt.config import MAX_CHAR_REQUIREMENTS, MAX_CHAR_RESUME, KEY_NEW_REQUEST, KEY_NEW_RESUME, KEY_NEW_REQUIREMENTS
 from tests.conftest import consumer
