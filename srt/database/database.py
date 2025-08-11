@@ -5,7 +5,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import text
 from dotenv import load_dotenv
 
-from srt.data_base.base import Base
+from srt.database.base import Base
 
 load_dotenv()  # Загружает переменные из .env
 DB_HOST = os.getenv('DB_HOST')
@@ -37,7 +37,7 @@ async def get_db() -> AsyncSession:
         await db.close()
 
 
-async def create_data_base():
+async def create_database():
     """Создает базу данных и все таблицы в ней (если существует, то ничего не произойдёт) """
     # Сначала подключаемся к серверу PostgreSQL без указания конкретной базы
     engine = create_async_engine(POSTGRES_SERVER_URL, isolation_level="AUTOCOMMIT")
