@@ -1036,3 +1036,24 @@ msg: {"processings_ids": [26, 27, 28, 29, 30], "requirements_ids": [6]}
 2025-08-12 13:05:36,958 - srt.config - INFO - New message sent: err: None
 msg: {"processings_ids": [31, 32, 33, 34, 35], "requirements_ids": [8]}
 2025-08-12 13:05:37,966 - httpx - INFO - HTTP Request: POST http://test/delete_requirements "HTTP/1.1 200 OK"
+2025-08-12 13:49:08,469 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-08-12 13:49:08,547 - root - INFO - Creating database tables...
+2025-08-12 13:49:08,557 - root - INFO - Database tables created successfully
+2025-08-12 13:49:08,801 - httpx - INFO - HTTP Request: POST http://test/start_processing "HTTP/1.1 403 Forbidden"
+2025-08-12 13:49:08,807 - httpx - INFO - HTTP Request: POST http://test/start_processing "HTTP/1.1 422 Unprocessable Entity"
+2025-08-12 13:49:40,564 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-08-12 13:49:40,646 - root - INFO - Creating database tables...
+2025-08-12 13:49:40,655 - root - INFO - Database tables created successfully
+2025-08-12 13:49:41,291 - httpx - INFO - HTTP Request: POST http://test/start_processing "HTTP/1.1 404 Not Found"
+2025-08-12 13:49:41,481 - httpx - INFO - HTTP Request: POST http://test/start_processing "HTTP/1.1 404 Not Found"
+2025-08-12 13:50:03,831 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-08-12 13:50:03,919 - root - INFO - Creating database tables...
+2025-08-12 13:50:03,929 - root - INFO - Database tables created successfully
+2025-08-12 13:50:17,281 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-08-12 13:50:17,471 - root - INFO - Creating database tables...
+2025-08-12 13:50:17,481 - root - INFO - Database tables created successfully
+2025-08-12 13:51:25,696 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-08-12 13:51:25,776 - root - INFO - Creating database tables...
+2025-08-12 13:51:25,785 - root - INFO - Database tables created successfully
+2025-08-12 13:51:26,221 - httpx - INFO - HTTP Request: POST http://test/start_processing "HTTP/1.1 403 Forbidden"
+2025-08-12 13:51:26,312 - httpx - INFO - HTTP Request: POST http://test/start_processing "HTTP/1.1 403 Forbidden"

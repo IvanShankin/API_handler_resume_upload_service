@@ -197,7 +197,7 @@ async def start_processing(
     db: AsyncSession = Depends(get_db)
 ):
     if await redis_client.get(f'start_processing_bloc:{current_user.user_id}'):
-        raise ToManyRequest(int(START_PROCESSING_BLOCK_TIME))
+        raise ToManyRequest(START_PROCESSING_BLOCK_TIME.seconds)
 
     # получаем текущее количество запросов
     quantity_requests = await redis_client.get(f'start_processing:{current_user.user_id}')

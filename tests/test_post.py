@@ -419,6 +419,8 @@ class TestCreateResumeFile:
                 os.remove(test_file_path)
 
 class TestStartProcessing:
+    callback_url = 'http://test_url/'
+
     @pytest.mark.asyncio
     async def test_code_200(self, db_session, clearing_kafka, redis_session, create_requirements_and_resume):
         consumer.subscribe([KAFKA_TOPIC_PRODUCER_FOR_AI_HANDLER]) # подписка на топик
@@ -426,13 +428,12 @@ class TestStartProcessing:
                 transport=ASGITransport(app),
                 base_url="http://test",
         ) as ac:
-            callback_url = 'http://test_url/'
             response = await ac.post(
                 "/start_processing",
                 json={
                     "requirements_id": create_requirements_and_resume['requirements_id'],
                     "resume_id": create_requirements_and_resume['resume_id'],
-                    "callback_url": callback_url
+                    "callback_url": self.callback_url
                 },
                 headers={"Authorization": f"Bearer {create_requirements_and_resume['access_token']}"}
             )
@@ -459,7 +460,7 @@ class TestStartProcessing:
             assert data_kafka['user_id'] == create_requirements_and_resume['user_id']
             assert data_kafka['requirements_id'] == create_requirements_and_resume['requirements_id']
             assert data_kafka['resume_id'] == create_requirements_and_resume['resume_id']
-            assert data_kafka['callback_url'] == callback_url
+            assert data_kafka['callback_url'] == self.callback_url
             assert data_kafka['requirements'] == create_requirements_and_resume['requirements']
             assert data_kafka['resume'] == create_requirements_and_resume['resume']
 
@@ -496,6 +497,7 @@ class TestStartProcessing:
                 json={
                     'requirements_id': another_requirements.requirements_id,
                     'resume_id': create_requirements_and_resume['resume_id'],
+                    "callback_url": self.callback_url
                 },
                 headers={"Authorization": f"Bearer {create_requirements_and_resume['access_token']}"}
             )
@@ -507,6 +509,7 @@ class TestStartProcessing:
                 json={
                     'requirements_id': create_requirements_and_resume['requirements_id'],
                     'resume_id': another_resume.resume_id,
+                    "callback_url": self.callback_url
                 },
                 headers={"Authorization": f"Bearer {create_requirements_and_resume['access_token']}"}
             )
@@ -516,8 +519,8 @@ class TestStartProcessing:
     @pytest.mark.parametrize(
         'data_request',
         [
-            ({"requirements_id": 1, "resume_id": 423432}),
-            ({"requirements_id": 543534, "resume_id": 1})
+            ({"requirements_id": 1, "resume_id": 423432, "callback_url": 'http://test_url/'}),
+            ({"requirements_id": 543534, "resume_id": 1, "callback_url": 'http://test_url/'})
         ]
     )
     async def test_code_404(self, data_request, create_requirements_and_resume): # при вводе несуществующего ID
