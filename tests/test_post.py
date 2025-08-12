@@ -589,7 +589,7 @@ async def test_delete_processing(db_session, create_requirements_and_resume, cle
             except KafkaError as e:
                 raise Exception(f"Ошибка Kafka: {e}")
 
-        assert new_processing.processing_id == data_kafka['processing_ids'][0] # через кафка передаётся массив с удалёнными id
+        assert new_processing.processing_id == data_kafka['processings_ids'][0] # через kafka передаётся массив с удалёнными id
 
 
 async def test_delete_requirements(db_session, redis_session, create_requirements_and_resume, clearing_kafka):

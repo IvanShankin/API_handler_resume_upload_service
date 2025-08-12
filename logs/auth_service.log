@@ -1103,3 +1103,24 @@ msg: {"callback_url": "http://test_url/", "processing_id": 58, "user_id": 1, "re
 2025-08-12 14:14:59,835 - httpx - INFO - HTTP Request: POST http://test/start_processing "HTTP/1.1 403 Forbidden"
 2025-08-12 14:15:01,038 - httpx - INFO - HTTP Request: POST http://test/start_processing "HTTP/1.1 404 Not Found"
 2025-08-12 14:15:02,245 - httpx - INFO - HTTP Request: POST http://test/start_processing "HTTP/1.1 404 Not Found"
+2025-08-12 14:15:07,580 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-08-12 14:15:07,658 - root - INFO - Creating database tables...
+2025-08-12 14:15:07,667 - root - INFO - Database tables created successfully
+2025-08-12 14:15:07,760 - srt.config - WARNING - Failed to reset consumer for topic uploading_data_test: KafkaError{code=_STATE,val=-172,str="Failed to seek to offset 0: Local: Erroneous state"}
+2025-08-12 14:15:16,954 - srt.config - INFO - New message sent: err: None
+msg: {"callback_url": "http://test_url/", "processing_id": 59, "user_id": 1, "resume_id": 63, "requirements_id": 62, "requirements": "\u0422\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435", "resume": "\u0422\u0435\u0441\u0442\u043e\u0432\u043e\u0435 \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-08-12 14:15:17,959 - httpx - INFO - HTTP Request: POST http://test/start_processing "HTTP/1.1 200 OK"
+2025-08-12 14:15:21,168 - httpx - INFO - HTTP Request: POST http://test/start_processing "HTTP/1.1 403 Forbidden"
+2025-08-12 14:15:21,322 - httpx - INFO - HTTP Request: POST http://test/start_processing "HTTP/1.1 403 Forbidden"
+2025-08-12 14:15:22,630 - httpx - INFO - HTTP Request: POST http://test/start_processing "HTTP/1.1 404 Not Found"
+2025-08-12 14:15:23,829 - httpx - INFO - HTTP Request: POST http://test/start_processing "HTTP/1.1 404 Not Found"
+2025-08-12 14:15:31,748 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-08-12 14:15:31,953 - root - INFO - Creating database tables...
+2025-08-12 14:15:31,967 - root - INFO - Database tables created successfully
+2025-08-12 14:15:41,446 - srt.config - INFO - New message sent: err: None
+msg: {"callback_url": "http://test_url/", "processing_id": 60, "user_id": 1, "resume_id": 68, "requirements_id": 67, "requirements": "\u0422\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435", "resume": "\u0422\u0435\u0441\u0442\u043e\u0432\u043e\u0435 \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-08-12 14:15:42,453 - httpx - INFO - HTTP Request: POST http://test/start_processing "HTTP/1.1 200 OK"
+2025-08-12 14:15:45,579 - httpx - INFO - HTTP Request: POST http://test/start_processing "HTTP/1.1 403 Forbidden"
+2025-08-12 14:15:45,668 - httpx - INFO - HTTP Request: POST http://test/start_processing "HTTP/1.1 403 Forbidden"
+2025-08-12 14:15:46,873 - httpx - INFO - HTTP Request: POST http://test/start_processing "HTTP/1.1 404 Not Found"
+2025-08-12 14:15:48,185 - httpx - INFO - HTTP Request: POST http://test/start_processing "HTTP/1.1 404 Not Found"

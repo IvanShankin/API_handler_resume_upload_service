@@ -274,7 +274,7 @@ async def delete_processing(
         if result.rowcount > 0:
             producer.sent_message(
                 KAFKA_TOPIC_PRODUCER_FOR_UPLOADING_DATA,
-                KEY_DELETE_PROCESSING, {'processing_ids': data.processings_ids}
+                KEY_DELETE_PROCESSING, {'processings_ids': data.processings_ids}
             )
             return IsDeleteOut(is_deleted=True)
 
