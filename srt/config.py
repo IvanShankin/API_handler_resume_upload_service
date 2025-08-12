@@ -20,6 +20,9 @@ KEY_NEW_REQUEST = 'new_request'
 KEY_NEW_RESUME = 'new_resume'
 KEY_NEW_REQUIREMENTS = 'new_requirements'
 
+KEY_DELETE_PROCESSING = 'delete_processing'
+KEY_DELETE_REQUIREMENTS = 'delete_requirements'
+
 # данные для ключей Kafka (CONSUMER)
 KEY_NEW_USER = 'new_user'
 

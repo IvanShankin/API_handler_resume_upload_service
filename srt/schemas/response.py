@@ -12,3 +12,6 @@ class ResumeOut(BaseModel):
 
 class StartProcessingOut(BaseModel):
     status: str
+
+class IsDeleteOut(BaseModel):
+    is_deleted: bool

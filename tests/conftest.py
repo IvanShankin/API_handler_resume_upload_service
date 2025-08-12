@@ -26,7 +26,7 @@ from sqlalchemy import delete, func
 from confluent_kafka.cimpl import NewTopic, TopicPartition
 
 from srt.database.database import create_database, get_db
-from srt.database.models import User, Requirements, Resume
+from srt.database.models import User, Requirements, Resume, Processing
 from srt.dependencies import get_redis, admin_client
 from srt.config import logger
 
@@ -86,6 +86,8 @@ async def redis_session()->Redis:
 @pytest_asyncio.fixture(scope="function", autouse=True)
 async def clearing_db(db_session: AsyncSession):
     """Очищает базу банных"""
+    # удаляем обязательно в таком порядке
+    await db_session.execute(delete(Processing))
     await db_session.execute(delete(Requirements))
     await db_session.execute(delete(Resume))
     await db_session.execute(delete(User))
