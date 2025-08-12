@@ -19,7 +19,7 @@ from srt.database.models import User, Requirements, Resume, Processing
 from srt.main import app
 from srt.config import MAX_CHAR_REQUIREMENTS, MAX_CHAR_RESUME, KEY_NEW_REQUEST, KEY_NEW_RESUME, KEY_NEW_REQUIREMENTS, \
     KEY_DELETE_PROCESSING, KEY_DELETE_REQUIREMENTS
-from tests.conftest import consumer
+from tests.conftest import consumer, reset_requests_start_processing
 from tests.conftest import PATH_TO_TEST_DIRECTORY
 
 load_dotenv()  # Загружает переменные из .env
@@ -129,7 +129,7 @@ class TestCreateRequirementsText:
 
             await comparison_requirements_data(requirements_content, data_response, db_session, redis_session)
 
-    async def test_code_413(self, db_session, clearing_kafka, redis_session, create_user):
+    async def test_code_422(self, db_session, clearing_kafka, redis_session, create_user):
         # подписка на топик
         consumer.subscribe([KAFKA_TOPIC_PRODUCER_FOR_UPLOADING_DATA])
         async with AsyncClient(
@@ -145,7 +145,7 @@ class TestCreateRequirementsText:
                         json=data_request,
                         headers={"Authorization": f"Bearer {create_user['access_token']}"}
                     )
-                    assert response.status_code == 413
+                    assert response.status_code == 422
                     break
 
 class TestCreateRequirementsFile:
@@ -287,7 +287,7 @@ class TestCreateResumeText:
 
             await comparison_resume_data(resume_content, data_response, db_session, redis_session)
 
-    async def test_code_413(self, create_user):
+    async def test_code_422(self, create_user):
         async with AsyncClient(
                 transport=ASGITransport(app),
                 base_url="http://test",
@@ -299,10 +299,10 @@ class TestCreateResumeText:
                 if len(data_request['resume']) > MAX_CHAR_RESUME:
                     response = await ac.post(
                         "/create_resume/text",
-                        json=data_request,
+                        json={'resume': data_request['resume']},
                         headers={"Authorization": f"Bearer {create_user['access_token']}"}
                     )
-                    assert response.status_code == 413
+                    assert response.status_code == 422
                     break
 
 class TestCreateResumeFile:
@@ -424,6 +424,9 @@ class TestStartProcessing:
     @pytest.mark.asyncio
     async def test_code_200(self, db_session, clearing_kafka, redis_session, create_requirements_and_resume):
         consumer.subscribe([KAFKA_TOPIC_PRODUCER_FOR_AI_HANDLER]) # подписка на топик
+
+        await reset_requests_start_processing(redis_session, create_requirements_and_resume['user_id'])
+
         async with AsyncClient(
                 transport=ASGITransport(app),
                 base_url="http://test",
@@ -465,7 +468,9 @@ class TestStartProcessing:
             assert data_kafka['resume'] == create_requirements_and_resume['resume']
 
     @pytest.mark.asyncio
-    async def test_code_403(self, db_session, create_requirements_and_resume, create_user):  # при попытке получить данные другого пользователя
+    async def test_code_403(self, db_session, redis_session, create_requirements_and_resume, create_user):  # при попытке получить данные другого пользователя
+        await reset_requests_start_processing(redis_session, create_requirements_and_resume['user_id'])
+
         # Создаем второго пользователя
         another_user = User(user_id=create_user['user_id'] + 1)
         db_session.add(another_user)
@@ -523,7 +528,8 @@ class TestStartProcessing:
             ({"requirements_id": 543534, "resume_id": 1, "callback_url": 'http://test_url/'})
         ]
     )
-    async def test_code_404(self, data_request, create_requirements_and_resume): # при вводе несуществующего ID
+    async def test_code_404(self, data_request, redis_session, create_requirements_and_resume): # при вводе несуществующего ID
+        await reset_requests_start_processing(redis_session, create_requirements_and_resume['user_id'])
         async with AsyncClient(
                 transport=ASGITransport(app),
                 base_url="http://test",

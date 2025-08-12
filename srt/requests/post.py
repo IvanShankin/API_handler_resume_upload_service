@@ -122,10 +122,6 @@ async def create_requirements_text(
         redis_client: Redis = Depends(get_redis),
         db: AsyncSession = Depends(get_db)
 ):
-    # Создаем запись с требованиями
-    if len(data.requirements) > MAX_CHAR_REQUIREMENTS:
-        raise TooManyCharacters(MAX_CHAR_REQUIREMENTS)
-
     return await add_requirements(current_user.user_id, data.requirements, redis_client, db)
 
 
@@ -159,10 +155,6 @@ async def create_resume_text(
         redis_client: Redis = Depends(get_redis),
         db: AsyncSession = Depends(get_db)
 ):
-    # Создаем запись с требованиями
-    if len(data.resume) > MAX_CHAR_RESUME:
-        raise TooManyCharacters(MAX_CHAR_RESUME)
-
     return await add_resume(current_user.user_id, data.resume, redis_client, db)
 
 
@@ -210,7 +202,7 @@ async def start_processing(
             START_PROCESSING_BLOCK_TIME,
             "blocked" # значение может быть любое
         )
-        raise ToManyRequest(int(START_PROCESSING_BLOCK_TIME))
+        raise ToManyRequest(START_PROCESSING_BLOCK_TIME.seconds)
 
     # инкрементируем счётчик
     if quantity_requests == 0:

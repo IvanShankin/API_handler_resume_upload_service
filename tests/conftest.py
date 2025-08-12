@@ -152,7 +152,8 @@ async def clearing_kafka():
         else:
             raise RuntimeError(f"Failed to create topic {kafka_topic_name}")
 
-
+async def reset_requests_start_processing(redis_session, user_id):
+    await redis_session.delete(f'start_processing:{user_id}')
 
 @pytest_asyncio.fixture(scope="function")
 async def create_user(db_session: AsyncSession)->dict:

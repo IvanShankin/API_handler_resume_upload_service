@@ -1057,3 +1057,49 @@ msg: {"processings_ids": [31, 32, 33, 34, 35], "requirements_ids": [8]}
 2025-08-12 13:51:25,785 - root - INFO - Database tables created successfully
 2025-08-12 13:51:26,221 - httpx - INFO - HTTP Request: POST http://test/start_processing "HTTP/1.1 403 Forbidden"
 2025-08-12 13:51:26,312 - httpx - INFO - HTTP Request: POST http://test/start_processing "HTTP/1.1 403 Forbidden"
+2025-08-12 13:53:38,071 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-08-12 13:53:38,149 - root - INFO - Creating database tables...
+2025-08-12 13:53:38,159 - root - INFO - Database tables created successfully
+2025-08-12 13:53:38,290 - httpx - INFO - HTTP Request: POST http://test/create_resume/text "HTTP/1.1 422 Unprocessable Entity"
+2025-08-12 13:54:15,536 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-08-12 13:54:15,614 - root - INFO - Creating database tables...
+2025-08-12 13:54:15,624 - root - INFO - Database tables created successfully
+2025-08-12 13:54:15,941 - srt.config - INFO - New message sent: err: None
+msg: {"resume_id": 30, "user_id": 1, "resume": "resume_content"}
+2025-08-12 13:54:16,956 - httpx - INFO - HTTP Request: POST http://test/create_resume/text "HTTP/1.1 200 OK"
+2025-08-12 13:54:47,899 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-08-12 13:54:47,978 - root - INFO - Creating database tables...
+2025-08-12 13:54:47,988 - root - INFO - Database tables created successfully
+2025-08-12 13:54:48,117 - httpx - INFO - HTTP Request: POST http://test/create_resume/text "HTTP/1.1 422 Unprocessable Entity"
+2025-08-12 14:00:42,603 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-08-12 14:00:42,682 - root - INFO - Creating database tables...
+2025-08-12 14:00:42,691 - root - INFO - Database tables created successfully
+2025-08-12 14:00:42,786 - srt.config - WARNING - Failed to reset consumer for topic uploading_data_test: KafkaError{code=_STATE,val=-172,str="Failed to seek to offset 0: Local: Erroneous state"}
+2025-08-12 14:00:51,851 - httpx - INFO - HTTP Request: POST http://test/create_requirements/text "HTTP/1.1 422 Unprocessable Entity"
+2025-08-12 14:02:45,654 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-08-12 14:02:45,735 - root - INFO - Creating database tables...
+2025-08-12 14:02:45,744 - root - INFO - Database tables created successfully
+2025-08-12 14:02:45,967 - httpx - INFO - HTTP Request: POST http://test/start_processing "HTTP/1.1 404 Not Found"
+2025-08-12 14:02:46,157 - httpx - INFO - HTTP Request: POST http://test/start_processing "HTTP/1.1 404 Not Found"
+2025-08-12 14:14:21,434 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-08-12 14:14:21,516 - root - INFO - Creating database tables...
+2025-08-12 14:14:21,525 - root - INFO - Database tables created successfully
+2025-08-12 14:14:21,854 - httpx - INFO - HTTP Request: POST http://test/start_processing "HTTP/1.1 403 Forbidden"
+2025-08-12 14:14:22,058 - httpx - INFO - HTTP Request: POST http://test/start_processing "HTTP/1.1 403 Forbidden"
+2025-08-12 14:14:31,433 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-08-12 14:14:31,628 - root - INFO - Creating database tables...
+2025-08-12 14:14:31,638 - root - INFO - Database tables created successfully
+2025-08-12 14:14:31,728 - srt.config - WARNING - Failed to reset consumer for topic uploading_data_test: KafkaError{code=_STATE,val=-172,str="Failed to seek to offset 0: Local: Erroneous state"}
+2025-08-12 14:14:40,926 - srt.config - INFO - New message sent: err: None
+msg: {"callback_url": "http://test_url/", "processing_id": 57, "user_id": 1, "resume_id": 57, "requirements_id": 56, "requirements": "\u0422\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435", "resume": "\u0422\u0435\u0441\u0442\u043e\u0432\u043e\u0435 \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-08-12 14:14:45,914 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-08-12 14:14:46,124 - root - INFO - Creating database tables...
+2025-08-12 14:14:46,134 - root - INFO - Database tables created successfully
+2025-08-12 14:14:46,333 - srt.config - WARNING - Failed to reset consumer for topic uploading_data_test: KafkaError{code=_STATE,val=-172,str="Failed to seek to offset 0: Local: Erroneous state"}
+2025-08-12 14:14:55,507 - srt.config - INFO - New message sent: err: None
+msg: {"callback_url": "http://test_url/", "processing_id": 58, "user_id": 1, "resume_id": 58, "requirements_id": 57, "requirements": "\u0422\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f \u043a \u0440\u0435\u0437\u044e\u043c\u0435", "resume": "\u0422\u0435\u0441\u0442\u043e\u0432\u043e\u0435 \u0440\u0435\u0437\u044e\u043c\u0435"}
+2025-08-12 14:14:56,523 - httpx - INFO - HTTP Request: POST http://test/start_processing "HTTP/1.1 200 OK"
+2025-08-12 14:14:59,744 - httpx - INFO - HTTP Request: POST http://test/start_processing "HTTP/1.1 403 Forbidden"
+2025-08-12 14:14:59,835 - httpx - INFO - HTTP Request: POST http://test/start_processing "HTTP/1.1 403 Forbidden"
+2025-08-12 14:15:01,038 - httpx - INFO - HTTP Request: POST http://test/start_processing "HTTP/1.1 404 Not Found"
+2025-08-12 14:15:02,245 - httpx - INFO - HTTP Request: POST http://test/start_processing "HTTP/1.1 404 Not Found"
