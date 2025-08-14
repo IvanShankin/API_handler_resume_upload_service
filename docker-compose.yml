@@ -3,7 +3,7 @@ services:
     build: .
     ports:
       - "8001:8001"
-    env_file: # Добавьте эту секцию
+    env_file:
       - .env
     environment:
       - SECRET_KEY=${SECRET_KEY}

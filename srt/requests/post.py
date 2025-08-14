@@ -274,7 +274,7 @@ async def delete_processing(
         if result.rowcount > 0:
             producer.sent_message(
                 KAFKA_TOPIC_PRODUCER_FOR_UPLOADING_DATA,
-                KEY_DELETE_PROCESSING, {'processings_ids': data.processings_ids}
+                KEY_DELETE_PROCESSING, {'processings_ids': data.processings_ids, 'user_id': current_user.user_id}
             )
             return IsDeleteOut(is_deleted=True)
 
@@ -338,7 +338,11 @@ async def delete_requirements(
             producer.sent_message(
                 KAFKA_TOPIC_PRODUCER_FOR_UPLOADING_DATA,
                 KEY_DELETE_REQUIREMENTS,
-                {'processings_ids': deleted_processing_ids, 'requirements_ids': data.requirements_ids}
+                {
+                    'processings_ids': deleted_processing_ids,
+                    'requirements_ids': data.requirements_ids,
+                    'user_id': current_user.user_id
+                }
             )
             return IsDeleteOut(is_deleted=True)
 

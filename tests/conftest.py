@@ -1,4 +1,6 @@
 import asyncio
+import inspect
+import sys
 import os
 import shutil
 import time
@@ -24,8 +26,9 @@ import pytest_asyncio
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import delete, func
 from confluent_kafka.cimpl import NewTopic, TopicPartition
+from sqlalchemy.orm import sessionmaker
 
-from srt.database.database import create_database, get_db
+from srt.database.database import create_database, create_async_engine, SQL_DB_URL, get_db as original_get_db
 from srt.database.models import User, Requirements, Resume, Processing
 from srt.dependencies import get_redis, admin_client
 from srt.config import logger
@@ -54,22 +57,81 @@ async def create_database_fixture():
 
     await create_database()
 
-@pytest_asyncio.fixture(scope='session', autouse=True)
-async def check_kafka_connection():
+
+# Мок-версия get_db
+async def _mock_get_db():
+    """Переопределяет функцию get_db. Отличия: каждый раз создаёт новый engine и session_local"""
+    engine = create_async_engine(SQL_DB_URL)
+    session_local = sessionmaker(
+        engine,
+        class_=AsyncSession,
+        expire_on_commit=False,
+        autoflush=False
+    )
+    db = session_local()
     try:
-        admin_client.list_topics(timeout=10)
-    except Exception:
-        raise Exception("Не удалось установить соединение с Kafka!")
+        yield db
+    finally:
+        await db.close()
+
+
+@pytest_asyncio.fixture(autouse=True, scope="session")
+def override_get_db_globally():
+    original = original_get_db # сохранение оригинальной функции
+    patched_modules = [] # хранит пути где переопределили get_db
+
+    # поиск по всем модулям
+    for module_name, module in list(sys.modules.items()):
+        if not module:
+            continue
+        # фильтруем только свои модули
+        if not module_name.startswith("srt."):
+            continue
+        try:
+            for attr_name, attr_value in inspect.getmembers(module):
+                if attr_value is original_get_db: # если значение атрибута это оригинальная get_db
+                    setattr(module, attr_name, _mock_get_db) # замена на новую get_db
+                    patched_modules.append((module, attr_name))
+        except Exception:
+            # если модуль ломается при доступе к атрибутам — пропускаем
+            continue
+
+    # подмена в FastAPI dependency_overrides
+    try:
+        from srt.main import app
+        app.dependency_overrides[original_get_db] = _mock_get_db
+    except ImportError:
+        pass
+    yield
+
+    # откат
+    for module, attr_name in patched_modules:
+        setattr(module, attr_name, original)
+
+    try:
+        from srt.main import app
+        app.dependency_overrides.clear()
+    except ImportError:
+        pass
 
 @pytest_asyncio.fixture
-async def db_session()->AsyncSession:
+async def db_session() -> AsyncSession:
     """Соединение с БД"""
+    from srt.database.database import get_db  # Импортируем после переопределения
+
     db_gen = get_db()
     session = await db_gen.__anext__()
     try:
         yield session
     finally:
         await session.close()
+
+@pytest_asyncio.fixture(scope='session', autouse=True)
+async def check_kafka_connection():
+    try:
+        admin_client.list_topics(timeout=10)
+    except Exception:
+        raise Exception("Не удалось установить соединение с Kafka!")
 
 @pytest_asyncio.fixture
 async def redis_session()->Redis:
