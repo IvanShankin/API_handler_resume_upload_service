@@ -10,6 +10,13 @@ RUN apt-get update && apt-get install -y \
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Установка шрифтов
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    fonts-dejavu \
+    fonts-liberation && \
+    fc-cache -fv && \
+    rm -rf /var/lib/apt/lists/*
 
 COPY . .
 
