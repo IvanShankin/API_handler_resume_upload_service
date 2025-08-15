@@ -136,3 +136,6 @@ docker-compose --env-file .test.env exec app pytest
 **TTL:**  
 - Для счетчика: 60 секунд  
 - Для блокировки: `START_PROCESSING_BLOCK_TIME` (30 секунд)
+
+
+### Общий readme: https://github.com/IvanShankin/API_handler_resume_general_readme
