@@ -1,0 +1,7 @@
+2025-08-28 00:38:25,297 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-08-28 00:38:25,719 - root - INFO - Creating database tables...
+2025-08-28 00:38:25,777 - root - INFO - Database tables created successfully
+2025-08-28 00:38:26,183 - src.config - WARNING - Failed to reset consumer for topic uploading_data_test: KafkaError{code=_STATE,val=-172,str="Failed to seek to offset 0: Local: Erroneous state"}
+2025-08-28 00:38:35,448 - src.config - INFO - New message sent: err: None
+msg: {"processings_ids": [75], "user_id": 1}
+2025-08-28 00:38:36,465 - httpx - INFO - HTTP Request: DELETE http://test/delete_processing "HTTP/1.1 200 OK"
