@@ -7,13 +7,13 @@ from sqlalchemy import select, delete, and_
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import APIRouter, Depends
 
-from srt.access import get_current_user
-from srt.dependencies import producer, get_redis
-from srt.schemas.request import DeleteProcessingRequest,DeleteRequirementsRequest
-from srt.schemas.response import IsDeleteOut
-from srt.database.models import User, Requirements, Processing
-from srt.database.database import get_db
-from srt.config import  logger, KEY_DELETE_PROCESSING, KEY_DELETE_REQUIREMENTS
+from src.access import get_current_user
+from src.dependencies import producer, get_redis
+from src.schemas.request import DeleteProcessingRequest,DeleteRequirementsRequest
+from src.schemas.response import IsDeleteOut
+from src.database.models import User, Requirements, Processing
+from src.database.database import get_db
+from src.config import  logger, KEY_DELETE_PROCESSING, KEY_DELETE_REQUIREMENTS
 
 
 load_dotenv()

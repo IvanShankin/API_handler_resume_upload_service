@@ -1,7 +1,7 @@
 from typing import List
 
 from pydantic import BaseModel, Field, HttpUrl
-from srt.config import MAX_CHAR_REQUIREMENTS, MAX_CHAR_RESUME
+from src.config import MAX_CHAR_REQUIREMENTS, MAX_CHAR_RESUME
 
 
 class RequirementsRequest(BaseModel):

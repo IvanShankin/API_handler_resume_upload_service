@@ -15,9 +15,9 @@ from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfbase import pdfmetrics
 from docx import Document
 
-from srt.database.models import User, Requirements, Resume, Processing
-from srt.main import app
-from srt.config import MAX_CHAR_REQUIREMENTS, MAX_CHAR_RESUME, KEY_NEW_REQUEST, KEY_NEW_RESUME, KEY_NEW_REQUIREMENTS, \
+from src.database.models import User, Requirements, Resume, Processing
+from src.main import app
+from src.config import MAX_CHAR_REQUIREMENTS, MAX_CHAR_RESUME, KEY_NEW_REQUEST, KEY_NEW_RESUME, KEY_NEW_REQUIREMENTS, \
     KEY_DELETE_PROCESSING, KEY_DELETE_REQUIREMENTS
 from tests.conftest import consumer, reset_requests_start_processing
 from tests.conftest import PATH_TO_TEST_DIRECTORY

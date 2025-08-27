@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
-from srt.requests.post import router as post_router
-from srt.requests.delete import router as delete_router
+from src.requests.post import router as post_router
+from src.requests.delete import router as delete_router
 
 main_router = APIRouter()
 

@@ -28,10 +28,10 @@ from sqlalchemy import delete, func
 from confluent_kafka.cimpl import NewTopic, TopicPartition
 from sqlalchemy.orm import sessionmaker
 
-from srt.database.database import create_database, create_async_engine, SQL_DB_URL, get_db as original_get_db
-from srt.database.models import User, Requirements, Resume, Processing
-from srt.dependencies import get_redis, admin_client
-from srt.config import logger
+from src.database.database import create_database, create_async_engine, SQL_DB_URL, get_db as original_get_db
+from src.database.models import User, Requirements, Resume, Processing
+from src.dependencies import get_redis, admin_client
+from src.config import logger
 
 from confluent_kafka import Consumer
 
@@ -85,7 +85,7 @@ def override_get_db_globally():
         if not module:
             continue
         # фильтруем только свои модули
-        if not module_name.startswith("srt."):
+        if not module_name.startswith("src."):
             continue
         try:
             for attr_name, attr_value in inspect.getmembers(module):
@@ -98,7 +98,7 @@ def override_get_db_globally():
 
     # подмена в FastAPI dependency_overrides
     try:
-        from srt.main import app
+        from src.main import app
         app.dependency_overrides[original_get_db] = _mock_get_db
     except ImportError:
         pass
@@ -109,7 +109,7 @@ def override_get_db_globally():
         setattr(module, attr_name, original)
 
     try:
-        from srt.main import app
+        from src.main import app
         app.dependency_overrides.clear()
     except ImportError:
         pass
@@ -117,7 +117,7 @@ def override_get_db_globally():
 @pytest_asyncio.fixture
 async def db_session() -> AsyncSession:
     """Соединение с БД"""
-    from srt.database.database import get_db  # Импортируем после переопределения
+    from src.database.database import get_db  # Импортируем после переопределения
 
     db_gen = get_db()
     session = await db_gen.__anext__()

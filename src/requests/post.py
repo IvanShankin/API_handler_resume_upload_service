@@ -12,16 +12,16 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import APIRouter, Depends
 from fastapi import UploadFile, File
 
-from srt.access import get_current_user
-from srt.dependencies import producer, get_redis
-from srt.schemas.request import RequirementsRequest, ResumeRequest, StartProcessingRequest
-from srt.schemas.response import RequirementsOut, ResumeOut, StartProcessingOut
-from srt.database.models import User, Requirements, Resume, Processing
-from srt.database.database import get_db
-from srt.config import STORAGE_TIME_REQUIREMENTS, STORAGE_TIME_RESUME, ALLOWED_EXTENSIONS, \
+from src.access import get_current_user
+from src.dependencies import producer, get_redis
+from src.schemas.request import RequirementsRequest, ResumeRequest, StartProcessingRequest
+from src.schemas.response import RequirementsOut, ResumeOut, StartProcessingOut
+from src.database.models import User, Requirements, Resume, Processing
+from src.database.database import get_db
+from src.config import STORAGE_TIME_REQUIREMENTS, STORAGE_TIME_RESUME, ALLOWED_EXTENSIONS, \
     MAX_CHAR_RESUME, MAX_CHAR_REQUIREMENTS, KEY_NEW_REQUEST, KEY_NEW_RESUME, KEY_NEW_REQUIREMENTS, \
     RATE_LIMIT_START_PROCESSING_IN_MINUTES, START_PROCESSING_BLOCK_TIME
-from srt.exception import (NotFoundData, NoRights,InvalidFileFormat, CorruptedFile,TooManyCharacters,
+from src.exception import (NotFoundData, NoRights, InvalidFileFormat, CorruptedFile, TooManyCharacters,
                            EmptyFileException, ToManyRequest)
 
 

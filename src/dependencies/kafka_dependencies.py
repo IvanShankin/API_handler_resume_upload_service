@@ -9,9 +9,9 @@ from confluent_kafka.admin import AdminClient, NewTopic
 from confluent_kafka import Consumer, KafkaException, KafkaError
 import sys
 
-from srt.config import logger, MIN_COMMIT_COUNT_KAFKA, KEY_NEW_USER
-from srt.database.models import User
-from srt.database.database import get_db
+from src.config import logger, MIN_COMMIT_COUNT_KAFKA, KEY_NEW_USER
+from src.database.models import User
+from src.database.database import get_db
 
 load_dotenv()
 KAFKA_BOOTSTRAP_SERVERS = os.getenv('KAFKA_BOOTSTRAP_SERVERS')

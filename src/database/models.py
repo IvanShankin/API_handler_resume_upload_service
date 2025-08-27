@@ -1,8 +1,8 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 
-from srt.database.base import Base
-from srt.config import MAX_CHAR_REQUIREMENTS, MAX_CHAR_RESUME
+from src.database.base import Base
+from src.config import MAX_CHAR_REQUIREMENTS, MAX_CHAR_RESUME
 
 class User(Base):
     __tablename__ = "users"

@@ -6,8 +6,8 @@ import os
 from dotenv import load_dotenv
 from fastapi import FastAPI
 
-from srt.database.database import create_database
-from srt.dependencies.kafka_dependencies import consumer_auth
+from src.database.database import create_database
+from src.dependencies.kafka_dependencies import consumer_auth
 from requests import main_router
 
 load_dotenv()
