@@ -5,3 +5,17 @@
 2025-08-28 00:38:35,448 - src.config - INFO - New message sent: err: None
 msg: {"processings_ids": [75], "user_id": 1}
 2025-08-28 00:38:36,465 - httpx - INFO - HTTP Request: DELETE http://test/delete_processing "HTTP/1.1 200 OK"
+2025-08-28 00:38:45,743 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-08-28 00:38:45,825 - root - INFO - Creating database tables...
+2025-08-28 00:38:45,835 - root - INFO - Database tables created successfully
+2025-08-28 00:38:46,004 - src.config - WARNING - Failed to reset consumer for topic uploading_data_test: KafkaError{code=_STATE,val=-172,str="Failed to seek to offset 0: Local: Erroneous state"}
+2025-08-28 00:38:55,259 - src.config - INFO - New message sent: err: None
+msg: {"processings_ids": [76, 77, 78, 79, 80], "requirements_ids": [97], "user_id": 1}
+2025-08-28 00:38:56,268 - httpx - INFO - HTTP Request: DELETE http://test/delete_requirements "HTTP/1.1 200 OK"
+2025-08-28 09:59:08,063 - root - INFO - Database api_handler_resume_upload_service_test already exists
+2025-08-28 09:59:08,145 - root - INFO - Creating database tables...
+2025-08-28 09:59:08,156 - root - INFO - Database tables created successfully
+2025-08-28 09:59:33,260 - src.config - WARNING - Failed to reset consumer for topic uploading_data_test: KafkaError{code=_STATE,val=-172,str="Failed to seek to offset 0: Local: Erroneous state"}
+2025-08-28 09:59:42,582 - src.config - INFO - New message sent: err: None
+msg: {"processings_ids": [81, 82, 83, 84, 85], "requirements_ids": [98], "user_id": 1}
+2025-08-28 09:59:43,589 - httpx - INFO - HTTP Request: DELETE http://test/delete_requirements "HTTP/1.1 200 OK"

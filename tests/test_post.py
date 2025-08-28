@@ -17,7 +17,7 @@ from docx import Document
 
 from src.database.models import User, Requirements, Resume
 from src.main import app
-from src.config import MAX_CHAR_REQUIREMENTS, MAX_CHAR_RESUME, KEY_NEW_REQUEST, KEY_NEW_RESUME, KEY_NEW_REQUIREMENTS,
+from src.config import MAX_CHAR_REQUIREMENTS, MAX_CHAR_RESUME, KEY_NEW_REQUEST, KEY_NEW_RESUME, KEY_NEW_REQUIREMENTS
 from tests.conftest import consumer, reset_requests_start_processing
 from tests.conftest import PATH_TO_TEST_DIRECTORY
 

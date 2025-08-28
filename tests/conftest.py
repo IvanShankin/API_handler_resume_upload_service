@@ -24,7 +24,7 @@ ALGORITHM = os.getenv('ALGORITHM')
 import pytest_asyncio
 
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import delete, func
+from sqlalchemy import delete, func, text
 from confluent_kafka.cimpl import NewTopic, TopicPartition
 from sqlalchemy.orm import sessionmaker
 
@@ -55,7 +55,25 @@ async def create_database_fixture():
     if MODE != "TEST":
         raise Exception("Используется основная БД!")
 
+    # Создаем таблицы
     await create_database()
+
+    # Проверяем, что таблицы созданы, выполняя простой запрос
+    engine = create_async_engine(SQL_DB_URL)
+    async with engine.connect() as conn:
+        try:
+            # Пробуем выполнить простой запрос к каждой таблице
+            tables_to_check = ['users', 'requirements', 'resume', 'processing']
+            for table in tables_to_check:
+                await conn.execute(text(f"SELECT 1 FROM {table} LIMIT 0"))
+            print("Tables creating successfully")
+        except Exception as e:
+            raise RuntimeError(f"Таблицы не созданы корректно.\nОШИБКА: {e}")
+        finally:
+            await conn.close()
+    await engine.dispose()
+
+
 
 
 # Мок-версия get_db
